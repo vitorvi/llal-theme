@@ -1,0 +1,3 @@
+[submodule "llal-style"]
+	path = llal-style
+	url = https://github.com/vtrmrx/llal-style.git
