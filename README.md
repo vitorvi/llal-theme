@@ -1,1 +1,1 @@
-"# llal-theme" 
+# LLAL Group Wordpress Theme"
