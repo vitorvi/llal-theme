@@ -11,7 +11,7 @@
     $baseurl = get_template_directory_uri();
 ?>
 
-        <footer class="page-footer wine-bg padding-top-xlarge padding-bottom-xlarge">
+        <footer class="page-footer marrom-bg padding-top-xlarge padding-bottom-xlarge">
         	<div class="custom-container">
         		<div class="row">
         			<div class="col-12 col-md-4 links">
