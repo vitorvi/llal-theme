@@ -1,7 +1,7 @@
 <?php
-/* Template Name: Home */
+/* Template Name: Sobre */
 /**
- * The template for displaying the home
+ * The template for displaying the about
  *
  * @package LLAL
  */
@@ -14,13 +14,12 @@
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-    <main class="page home">
+    <main class="page sobre">
 		<?php
-		    get_template_part( 'partials/slider', 'archive-full' );
-			get_template_part( 'partials/slider', 'testimonials' );
+		    get_template_part( 'partials/slider', 'brand' );
+			get_template_part( 'partials/slider', 'timeline' );
+			get_template_part( 'partials/nav', 'golden-circle' );
 			get_template_part( 'partials/join-us' );
-			get_template_part( 'partials/slider', 'archive' );
-			get_template_part( 'partials/stores' );
 		?>
     </main>
 

@@ -23,7 +23,7 @@
 	<body <?php body_class(); ?>>
 		<header class="page-header position-fixed">
 		    <nav class="custom-container navbar navbar-expand-lg d-flex justify-content-between">
-		        <div class="d-flex">
+		        <div class="d-flex flex-grow-1 justify-content-between">
 		        	<?php if ( has_custom_logo() ) : ?>
 		        	    <a href="<?php echo esc_url( home_url() ); ?>" class="logo d-flex align-items-center flex-row" rel="home">
                             <img src="<?php echo esc_url( $logo[0] ) ?>">

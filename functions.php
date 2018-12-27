@@ -1,6 +1,6 @@
 <?php
 /**
- * Red & Pips functions and definitions
+ * LLAL functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -8,17 +8,15 @@
  */
 
 
-if ( ! function_exists( 'red_and_pips_setup' ) ) :
+if ( ! function_exists( 'llal_setup' ) ) :
 
-	function red_and_pips_setup() {
+	function llal_setup() {
 
 	    register_nav_menus( array(
-			'header-menu' => esc_html__( 'Header Menu', 'red-and-pips' ),
-			'footer-menu' => esc_html__( 'Footer Menu', 'red-and-pips' ),
-			'language-selector' => esc_html__( 'Language Selector', 'red-and-pips' ),
+			'header-menu' => esc_html__( 'Header Menu', 'llal' )
 		) );
 
-		load_theme_textdomain( 'red-and-pips', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'llal', get_template_directory() . '/languages' );
 
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
@@ -42,7 +40,7 @@ if ( ! function_exists( 'red_and_pips_setup' ) ) :
 
 endif;
 
-add_action( 'after_setup_theme', 'red_and_pips_setup' );
+add_action( 'after_setup_theme', 'llal_setup' );
 
 function add_typekit_fonts() {
   wp_enqueue_style( 'basic-sans', 'https://use.typekit.net/glb4nbz.css' );
@@ -73,7 +71,7 @@ function the_theme_stylesheet() {
 }
 
 
-function red_and_pips_scripts() {
+function llal_scripts() {
 
     if( ! get_option( 'localhost_port' , '' ) == '' ) {
         $localhost_port  = ':'.get_option( 'localhost_port' , '' );
@@ -87,7 +85,8 @@ function red_and_pips_scripts() {
 
     wp_enqueue_style('owl', get_template_directory_uri() . '/css/owl.carousel.min.css');
     wp_enqueue_style('owl_theme', get_template_directory_uri() . '/css/owl.theme.default.min.css');
-    wp_enqueue_style('theme_style', $theme_style);
+	wp_enqueue_style('urbana', 'https://use.typekit.net/rtc5csn.css');
+	wp_enqueue_style('theme_style', $theme_style);
 	wp_enqueue_style('fontawesome', get_template_directory_uri() . '/css/fontawesome.css');
 
 	wp_deregister_script('jquery');
@@ -113,7 +112,7 @@ function custom_editor_styles() {
 }
 add_action( 'admin_init', 'custom_editor_styles' );
 
-add_action( 'wp_enqueue_scripts', 'red_and_pips_scripts' );
+add_action( 'wp_enqueue_scripts', 'llal_scripts' );
 
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(

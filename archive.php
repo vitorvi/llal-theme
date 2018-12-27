@@ -1,7 +1,7 @@
 <?php
-/* Template Name: Home */
+/* Template Name: Notícias */
 /**
- * The template for displaying the home
+ * The template for displaying the archive page
  *
  * @package LLAL
  */
@@ -14,13 +14,10 @@
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-    <main class="page home">
+    <main class="page archive">
 		<?php
 		    get_template_part( 'partials/slider', 'archive-full' );
-			get_template_part( 'partials/slider', 'testimonials' );
-			get_template_part( 'partials/join-us' );
-			get_template_part( 'partials/slider', 'archive' );
-			get_template_part( 'partials/stores' );
+			get_template_part( 'partials/gallery', 'archive' );
 		?>
     </main>
 

@@ -1,7 +1,7 @@
 <?php
-/* Template Name: Home */
+/* Template Name: Trabalhe Conosco */
 /**
- * The template for displaying the home
+ * The template for displaying the join us page
  *
  * @package LLAL
  */
@@ -14,13 +14,14 @@
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-    <main class="page home">
+    <main class="page trabalhe">
+		<section class="full-height turquesa-bg">
+		</section>
+		<section class="branco-bg padding-bottom-xlarge padding-top-xlarge">
+		</section>
 		<?php
-		    get_template_part( 'partials/slider', 'archive-full' );
 			get_template_part( 'partials/slider', 'testimonials' );
 			get_template_part( 'partials/join-us' );
-			get_template_part( 'partials/slider', 'archive' );
-			get_template_part( 'partials/stores' );
 		?>
     </main>
 
