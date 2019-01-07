@@ -798,6 +798,7 @@ p, .text-medium, a, li, li a {
   text-transform: none;
   letter-spacing: 0;
   font-style: normal;
+  color: #683431;
 }
 @media (min-width: 1025px) {
   p, .text-medium, a, li, li a {
@@ -819,7 +820,7 @@ p, li {
   font-size: 0.5rem;
   line-height: 1rem;
   font-style: normal;
-  color: #0FB1A9;
+  color: #683431;
 }
 @media (min-width: 1025px) {
   .text-small {
@@ -839,7 +840,7 @@ blockquote, .text-large, blockquote p {
   text-transform: none;
   letter-spacing: 0;
   font-weight: 300;
-  color: #0FB1A9;
+  color: #683431;
 }
 @media (min-width: 1025px) {
   blockquote, .text-large, blockquote p {
@@ -859,7 +860,7 @@ figcaption, input, textarea {
   font-size: 0.5rem;
   line-height: 1rem;
   font-style: normal;
-  color: #0FB1A9;
+  color: #683431;
 }
 @media (min-width: 1025px) {
   figcaption, input, textarea {
