@@ -12,9 +12,9 @@
     $baseurl = get_template_directory_uri();
 ?>
 
-<?php while ( have_posts() ) : the_post(); ?>
+<?php if ( have_posts() ) : the_post(); ?>
 
-    <main class="page home">
+	<main class="page home">
 		<?php
 		    get_template_part( 'partials/slider', 'archive-full' );
 			get_template_part( 'partials/slider', 'testimonials' );
@@ -22,9 +22,9 @@
 			get_template_part( 'partials/slider', 'archive' );
 			get_template_part( 'partials/stores' );
 		?>
-    </main>
+	</main>
 
-<?php endwhile; ?>
+<?php endif; ?>
 
 <?php
     get_template_part( 'partials/footer' );

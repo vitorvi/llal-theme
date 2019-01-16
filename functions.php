@@ -48,12 +48,12 @@ function add_typekit_fonts() {
 add_action( 'admin_enqueue_scripts', 'add_typekit_fonts' );
 
 function your_theme_new_customizer_settings($wp_customize) {
-    $wp_customize->add_setting('secondary_logo');
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'secondary_logo',
+    $wp_customize->add_setting('negative_logo');
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'negative_logo',
     array(
-    'label' => 'Logo (Small Version)',
+    'label' => 'Logo (Versão Negative)',
     'section' => 'title_tagline',
-    'settings' => 'secondary_logo',
+    'settings' => 'negative_logo',
     'priority' => 1,
     ) ) );
 }

@@ -12,7 +12,7 @@
     $baseurl = get_template_directory_uri();
 ?>
 
-<?php while ( have_posts() ) : the_post(); ?>
+<?php if ( have_posts() ) : the_post(); ?>
 
     <main class="page sobre">
 		<?php
@@ -23,7 +23,7 @@
 		?>
     </main>
 
-<?php endwhile; ?>
+<?php endif; ?>
 
 <?php
     get_template_part( 'partials/footer' );
