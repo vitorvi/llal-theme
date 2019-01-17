@@ -18,6 +18,14 @@
 		<section class="full-height turquesa-bg">
 		</section>
 		<section class="branco-bg padding-bottom-xlarge padding-top-xlarge">
+			<div class="custom-container">
+				<div class="row">
+					<div class="col-12 col-lg-8 offset-lg-2">
+						<h1 class="text-center margin-bottom-xsmall"><?php the_field('titulo') ?></h1>
+						<p><?php the_field('intro') ?></p>
+					</div>
+				</div>
+			</div>
 		</section>
 		<?php
 			get_template_part( 'partials/slider', 'testimonials' );
