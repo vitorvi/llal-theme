@@ -4,7 +4,10 @@
  *
  * @package LLAL
  */
-    get_template_part( 'partials/header' );
+ if(get_option('maintenance')) :
+     get_template_part( 'partials/maintenance' );
+ else:
+     get_template_part( 'partials/header' );
 ?>
 
 <?php
@@ -22,3 +25,5 @@
 <?php
     get_template_part( 'partials/footer' );
 ?>
+
+<?php endif; ?>

@@ -9,15 +9,11 @@
 
 
 if ( ! function_exists( 'llal_setup' ) ) :
-
 	function llal_setup() {
-
 	    register_nav_menus( array(
 			'header-menu' => esc_html__( 'Header Menu', 'llal' )
 		) );
-
 		load_theme_textdomain( 'llal', get_template_directory() . '/languages' );
-
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 		add_image_size( 'small', 750, 750 );
@@ -35,17 +31,10 @@ if ( ! function_exists( 'llal_setup' ) ) :
 			'gallery',
 			'caption',
 		) );
-
 	}
-
 endif;
 
 add_action( 'after_setup_theme', 'llal_setup' );
-
-function add_typekit_fonts() {
-  wp_enqueue_style( 'basic-sans', 'https://use.typekit.net/glb4nbz.css' );
-}
-add_action( 'admin_enqueue_scripts', 'add_typekit_fonts' );
 
 function your_theme_new_customizer_settings($wp_customize) {
     $wp_customize->add_setting('negative_logo');
@@ -59,44 +48,18 @@ function your_theme_new_customizer_settings($wp_customize) {
 }
 add_action('customize_register', 'your_theme_new_customizer_settings');
 
-function the_theme_stylesheet() {
-    if( ! get_option( 'localhost_port' , '' ) == '' ) {
-        $localhost_port  = ':'.get_option( 'localhost_port' , '' );
-    }
-    if ( current_user_can('developer') ) {
-        return 'http://localhost'.$localhost_port.'/style.css';
-    } else {
-        return get_template_directory_uri() . '/css/style.css';
-    }
-}
-
-
 function llal_scripts() {
-
-    if( ! get_option( 'localhost_port' , '' ) == '' ) {
-        $localhost_port  = ':'.get_option( 'localhost_port' , '' );
-    }
-
-    if ( current_user_can('developer') ) {
-        $theme_style = 'http://localhost'.$localhost_port.'/style.css';
-    } else {
-        $theme_style = get_template_directory_uri() . '/css/style.css';
-    }
-
     wp_enqueue_style('owl', get_template_directory_uri() . '/css/owl.carousel.min.css');
     wp_enqueue_style('owl_theme', get_template_directory_uri() . '/css/owl.theme.default.min.css');
 	wp_enqueue_style('urbana', 'https://use.typekit.net/rtc5csn.css');
-	wp_enqueue_style('theme_style', $theme_style);
+	wp_enqueue_style('theme_style', get_template_directory_uri() . '/css/style.css');
 	wp_enqueue_style('fontawesome', get_template_directory_uri() . '/css/fontawesome.css');
-
 	wp_deregister_script('jquery');
-
 	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery.min.js', array(), $ver = false, false );
 	wp_enqueue_script( 'popper', get_template_directory_uri() . '/js/popper.min.js', array(), $ver = false, false );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.js', array('jquery', 'popper'), $ver = false, false );
 	wp_enqueue_script( 'owl', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), $ver = false, false );
 	wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'bootstrap'), $ver = false, true );
-
 }
 
 add_filter('tiny_mce_before_init', 'ag_tinymce_paste_as_text');
@@ -107,7 +70,7 @@ function ag_tinymce_paste_as_text( $init ) {
 }
 
 function custom_editor_styles() {
-    add_editor_style( 'https://use.typekit.net/glb4nbz.css');
+    add_editor_style( 'https://use.typekit.net/rtc5csn.css');
     add_editor_style( '/css/editor.css');
 }
 add_action( 'admin_init', 'custom_editor_styles' );
@@ -116,25 +79,25 @@ add_action( 'wp_enqueue_scripts', 'llal_scripts' );
 
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
-		'page_title' 	=> 'Global Content',
-		'menu_title'	=> 'Global Content',
+		'page_title' 	=> 'Geral',
+		'menu_title'	=> 'Geral',
 		'menu_slug' 	=> 'global-content'
 	));
 
 }
 
-add_filter('admin_init', 'register_localhost_option');
+add_filter('admin_init', 'register_maintenance_option');
 
-function register_localhost_option()
+function register_maintenance_option()
 {
-    register_setting('general', 'localhost_port', 'esc_attr');
-    add_settings_field('localhost_port', '<label for="localhost_port">'.__('Localhost Port' , 'localhost_port' ).'</label>' , 'localhost_option_html', 'general');
+    register_setting('general', 'maintenance', 'esc_attr');
+    add_settings_field('maintenance', '<label for="maintenance">'.__('Em manutenção' , 'maintenance' ).'</label>' , 'maintenance_option_html', 'general');
 }
 
-function localhost_option_html()
-{
-    $value = get_option( 'localhost_port', '' );
-    echo '<input type="number" id="localhost_port" name="localhost_port" value="' . $value . '" />';
+function maintenance_option_html()
+{ ?>
+    <input type="checkbox" id="maintenance" name="maintenance" value="1" <?php checked(1, get_option('maintenance'), true) ?> />
+  <?php
 }
 
 
