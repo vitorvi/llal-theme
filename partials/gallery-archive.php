@@ -8,7 +8,7 @@
 
 <?php
     $query_args = array(
-        'posts_per_page' => -1 ,
+        'posts_per_page' => 3 ,
         'post_type' => 'post'
     );
     $posts_query = new WP_Query( $query_args );

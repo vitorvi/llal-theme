@@ -94,8 +94,11 @@
                                 <div class="col-12 col-md-4 offset-md-3">
                                     <div class="imagem margin-bottom-small">
                                         <div class="row subrow">
-                                            <div class="col-10 col-md-12 offset-1 offset-md-0">
+                                            <div class="d-none d-md-flex col-12">
                                                 <?php echo wp_get_attachment_image(get_sub_field('imagem'), 'large'); ?>
+                                            </div>
+                                            <div class="d-flex d-md-none col-10 offset-1">
+                                                <?php echo wp_get_attachment_image(get_sub_field('imagem_mobile'), 'medium'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -150,8 +153,8 @@
         owl_brand_content.on('change.owl.carousel', function(event) {
           if (event.namespace && event.property.name === 'position') {
             var target = event.relatedTarget.relative(event.property.value, true);
-            owl_brand_mask.owlCarousel('to', target, 300, true);
-            owl_brand_bg.owlCarousel('to', target, 300, true);
+            owl_brand_mask.owlCarousel('to', target, false, true);
+            owl_brand_bg.owlCarousel('to', target, false, true);
           }
         })
 
