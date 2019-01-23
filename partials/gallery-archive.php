@@ -7,20 +7,46 @@
 ?>
 
 <?php
+    $postsPerPage = 3;
+    $postType = 'post';
+    $order = 'desc';
     $query_args = array(
-        'posts_per_page' => 3 ,
-        'post_type' => 'post'
+        'posts_per_page' => $postsPerPage,
+        'post_type' => $postType,
+        'order' => $order,
+        'post_status' => 'publish'
     );
     $posts_query = new WP_Query( $query_args );
     if ($posts_query -> have_posts()) :
+        $posts_count = wp_count_posts('post')->publish;
 ?>
 
 <div class="order-posts padding-top-small padding-bottom-small cinza-bg"></div>
-<div class="branco-bg filters border-bottom-cinza padding-top-small padding-bottom-small"></div>
+<div class="branco-bg filters border-bottom-cinza padding-top-small padding-bottom-small">
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-12 d-flex flex-row justify-content-center flex-wrap">
+                <a class="tag cinza-3 filter filter_posts active" data-post-type="post" data-post-category="">Todos</a>
+                <?php
+                    $categories = get_terms( array(
+                        'taxonomy' => 'category',
+                        'hide_empty' => false,
+                    ) );
+                    foreach($categories as $term){
+                        if( 0 != $term->count ):
+                            $cor = get_field('cor', 'category_' . $term->term_id );
+                ?>
+                    <a class="tag <?php echo $cor ?>-bg cinza-3 filter filter_posts" data-post-type="post" data-post-category="<?php echo $term->slug; ?>"><?php echo $term->name; ?></a>
+                <?php endif; }?>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="gallery archive branco-bg padding-top-medium padding-bottom-xlarge">
     <div class="custom-container">
         <div class="row">
             <?php
+                $i = 1;
                 while ($posts_query -> have_posts()) : $posts_query -> the_post();
                 $postcat = get_the_category( $post->ID );
                 if ( ! empty( $postcat ) ) {
@@ -44,7 +70,14 @@
                         </div>
                     </article>
                 </a>
-            <?php endwhile; ?>
+            <?php $i++; endwhile; ?>
+        </div>
+        <div class="row">
+            <div class="col-12">
+              <div class="text-center">
+                  <a id="more_posts" class="button-large margin-top-small cinza-3 loadmore <?php if ($i <= $posts_count): ?>d-inline-block<?php else: ?>d-none<?php endif; ?>" data-order="<?php echo $order; ?>" data-post-type="<?php echo $postType; ?>" data-ppp="<?php echo $postsPerPage; ?>" data-offset="<?php echo $postsPerPage; ?>">Ver mais</a>
+              </div>
+            </div>
         </div>
     </div>
 </section>

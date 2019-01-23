@@ -7,6 +7,88 @@
  * @package LLAL
  */
 
+ $dev_role_set = array(
+     'switch_themes' => 1,
+     'edit_themes' => 1,
+     'activate_plugins' => 1,
+     'edit_plugins' => 1,
+     'edit_users' => 1,
+     'edit_files' => 1,
+     'manage_options' => 1,
+     'moderate_comments' => 1,
+     'manage_categories' => 1,
+     'manage_links' => 1,
+     'upload_files' => 1,
+     'import' => 1,
+     'unfiltered_html' => 1,
+     'edit_posts' => 1,
+     'edit_others_posts' => 1,
+     'edit_published_posts' => 1,
+     'publish_posts' => 1,
+     'edit_pages' => 1,
+     'read' => 1,
+     'level_10' => 1,
+     'level_9' => 1,
+     'level_8' => 1,
+     'level_7' => 1,
+     'level_6' => 1,
+     'level_5' => 1,
+     'level_4' => 1,
+     'level_3' => 1,
+     'level_2' => 1,
+     'level_1' => 1,
+     'level_0' => 1,
+     'edit_others_pages' => 1,
+     'edit_published_pages' => 1,
+     'publish_pages' => 1,
+     'delete_pages' => 1,
+     'delete_others_pages' => 1,
+     'delete_published_pages' => 1,
+     'delete_posts' => 1,
+     'delete_others_posts' => 1,
+     'delete_published_posts' => 1,
+     'delete_private_posts' => 1,
+     'edit_private_posts' => 1,
+     'read_private_posts' => 1,
+     'delete_private_pages' => 1,
+     'edit_private_pages' => 1,
+     'read_private_pages' => 1,
+     'delete_users' => 1,
+     'create_users' => 1,
+     'unfiltered_upload' => 1,
+     'edit_dashboard' => 1,
+     'update_plugins' => 1,
+     'delete_plugins' => 1,
+     'install_plugins' => 1,
+     'update_themes' => 1,
+     'install_themes' => 1,
+     'update_core' => 1,
+     'list_users' => 1,
+     'remove_users' => 1,
+     'promote_users' => 1,
+     'edit_theme_options' => 1,
+     'delete_themes' => 1,
+     'export' => 1,
+     'copy_posts' => 1,
+     'edit_blocks' => 1,
+     'edit_others_blocks' => 1,
+     'publish_blocks' => 1,
+     'read_private_blocks' => 1,
+     'read_blocks' => 1,
+     'delete_blocks' => 1,
+     'delete_private_blocks' => 1,
+     'delete_published_blocks' => 1,
+     'delete_others_blocks' => 1,
+     'edit_private_blocks' => 1,
+     'edit_published_blocks' => 1,
+     'create_blocks' => 1,
+     'wpseo_manage_options' => 1,
+     'ljmm_control' => 1,
+     'ljmm_view_site' => 1,
+ );
+
+ add_role('developer', __( 'Developer' ), $dev_role_set );
+
 
 if ( ! function_exists( 'llal_setup' ) ) :
 	function llal_setup() {
@@ -59,6 +141,8 @@ function llal_scripts() {
 	wp_enqueue_script( 'popper', get_template_directory_uri() . '/js/popper.min.js', array(), $ver = false, false );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.js', array('jquery', 'popper'), $ver = false, false );
 	wp_enqueue_script( 'owl', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), $ver = false, false );
+	wp_enqueue_script( 'loadmore', get_template_directory_uri().'/js/loadmore.js', array( 'jquery'  ) );
+    wp_localize_script( 'loadmore', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')) );
 	wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'bootstrap'), $ver = false, true );
 }
 
@@ -100,85 +184,69 @@ function maintenance_option_html()
   <?php
 }
 
+add_action( 'wp_ajax_more_posts', 'more_posts' );
+add_action( 'wp_ajax_nopriv_more_posts', 'more_posts' );
 
-$dev_role_set = array(
-    'switch_themes' => 1,
-    'edit_themes' => 1,
-    'activate_plugins' => 1,
-    'edit_plugins' => 1,
-    'edit_users' => 1,
-    'edit_files' => 1,
-    'manage_options' => 1,
-    'moderate_comments' => 1,
-    'manage_categories' => 1,
-    'manage_links' => 1,
-    'upload_files' => 1,
-    'import' => 1,
-    'unfiltered_html' => 1,
-    'edit_posts' => 1,
-    'edit_others_posts' => 1,
-    'edit_published_posts' => 1,
-    'publish_posts' => 1,
-    'edit_pages' => 1,
-    'read' => 1,
-    'level_10' => 1,
-    'level_9' => 1,
-    'level_8' => 1,
-    'level_7' => 1,
-    'level_6' => 1,
-    'level_5' => 1,
-    'level_4' => 1,
-    'level_3' => 1,
-    'level_2' => 1,
-    'level_1' => 1,
-    'level_0' => 1,
-    'edit_others_pages' => 1,
-    'edit_published_pages' => 1,
-    'publish_pages' => 1,
-    'delete_pages' => 1,
-    'delete_others_pages' => 1,
-    'delete_published_pages' => 1,
-    'delete_posts' => 1,
-    'delete_others_posts' => 1,
-    'delete_published_posts' => 1,
-    'delete_private_posts' => 1,
-    'edit_private_posts' => 1,
-    'read_private_posts' => 1,
-    'delete_private_pages' => 1,
-    'edit_private_pages' => 1,
-    'read_private_pages' => 1,
-    'delete_users' => 1,
-    'create_users' => 1,
-    'unfiltered_upload' => 1,
-    'edit_dashboard' => 1,
-    'update_plugins' => 1,
-    'delete_plugins' => 1,
-    'install_plugins' => 1,
-    'update_themes' => 1,
-    'install_themes' => 1,
-    'update_core' => 1,
-    'list_users' => 1,
-    'remove_users' => 1,
-    'promote_users' => 1,
-    'edit_theme_options' => 1,
-    'delete_themes' => 1,
-    'export' => 1,
-    'copy_posts' => 1,
-    'edit_blocks' => 1,
-    'edit_others_blocks' => 1,
-    'publish_blocks' => 1,
-    'read_private_blocks' => 1,
-    'read_blocks' => 1,
-    'delete_blocks' => 1,
-    'delete_private_blocks' => 1,
-    'delete_published_blocks' => 1,
-    'delete_others_blocks' => 1,
-    'edit_private_blocks' => 1,
-    'edit_published_blocks' => 1,
-    'create_blocks' => 1,
-    'wpseo_manage_options' => 1,
-    'ljmm_control' => 1,
-    'ljmm_view_site' => 1,
-);
-
-add_role('developer', __( 'Developer' ), $dev_role_set );
+function more_posts(){
+		global $post;
+		if ($_POST['category']):
+			$tax_query = array(
+					array (
+							'taxonomy' => 'material_type',
+							'field' => 'slug',
+							'tax_query' => array(
+									array (
+											'taxonomy' => 'material_type',
+											'field' => 'slug',
+											'terms' => $_POST['category'],
+									)
+							),
+							'terms' => $_POST['category'],
+					)
+			);
+		else:
+			$tax_query = '';
+		endif;
+		$args = array(
+			'post_type' => $_POST['post_type'],
+			'posts_per_page' => $_POST['ppp'],
+			'offset' => $_POST['offset'],
+			'order' => $_POST['order'],
+			'post_status' => 'publish',
+			'tax_query' => $tax_query
+		);
+		$posts=[];
+		$query = new WP_Query($args);
+		$posts_count = $query->found_posts;
+		if($query->have_posts()):
+				$i = 0;
+				while($query->have_posts()):$query->the_post();
+					if (get_the_title()):
+						$posts[$i]['title'] = get_the_title();
+					endif;
+					if (get_permalink()):
+						$posts[$i]['permalink'] = get_permalink();
+					endif;
+					if (get_the_post_thumbnail_url()):
+						$posts[$i]['thumb'] = get_the_post_thumbnail_url();
+					endif;
+					if (get_the_author_meta()):
+						$posts[$i]['author'] = get_the_author_meta( $field = 'nickname', $user_id = false );
+					endif;
+					if ( get_the_date()):
+						$posts[$i]['day'] = get_the_date( 'j' );
+						$posts[$i]['month'] = get_the_date( 'F' );
+						$posts[$i]['year'] = get_the_date( 'Y' );
+					endif;
+					if (get_the_terms()):
+						$terms = get_the_terms( $post->ID, 'category' );
+						$posts[$i]['category_name'] = $terms[0]->name;
+						$posts[$i]['category_slug'] = $terms[0]->name;
+					endif;
+					$i++;
+				endwhile;
+				wp_reset_postdata();
+				$offset = $_POST['offset']+$_POST['ppp'];
+		endif;
+		wp_send_json_success(array('posts'=>$posts, 'offset'=>$offset, 'posts_count'=>$posts_count));
+}

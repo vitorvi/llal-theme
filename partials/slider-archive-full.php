@@ -33,6 +33,15 @@
         .acf-field select option[value=verde] {
             color: #BBB323;
         }
+
+        .slider-grad.active {
+            opacity: .5;
+        }
+
+        .slider-grad {
+            opacity: 0;
+        }
+
     </style>
 
     <section class="slider archive-full" style="position: relative;">
@@ -50,7 +59,17 @@
         </div>
 
         <div class="full-height w-100" style="position: absolute; top: 0; left: 0;">
-            <div id="sliderGrad" class="marrom-gbg" style="opacity: .75; position: absolute; top: 0; left: 0; height: 100%; width: 100%; transition: all 1s ease;"></div>
+            <?php
+                $categories = get_terms( array(
+                    'taxonomy' => 'category',
+                    'hide_empty' => false,
+                ) );
+                foreach($categories as $term){
+                    if( 0 != $term->count ):
+                        $cor = get_field('cor', 'category_' . $term->term_id );
+            ?>
+                <div id="sliderGrad_<?php echo $cor ?>" class="<?php echo $cor ?>-gbg slider-grad" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; transition: all .3s linear;"></div>
+            <?php endif; }?>
         </div>
 
         <div class="owl-carousel owl-theme content full-height d-flex flex-column justify-content-end" style="position: absolute; top: 0; left: 0;">
@@ -107,7 +126,8 @@
             var target = event.relatedTarget.relative(event.property.value, true);
             owl_highlights_bg.owlCarousel('to', target, false, true);
             var colorClass = $($('.slider.archive-full .owl-carousel.content .owl-item:not(.cloned) .item')[target]).data('color');
-            $("#sliderGrad").removeClass().addClass(colorClass + '-gbg')
+            $(".slider-grad").removeClass("active");
+            $("#sliderGrad_" + colorClass).addClass("active");
           }
         });
 
