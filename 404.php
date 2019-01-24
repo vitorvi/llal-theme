@@ -21,7 +21,6 @@
         <div class="row padding-top-large margin-bottom-medium">
             <div class="col-12 text-center">
                 <h1 class="wine text-center">
-                    <?php echo $message_404 ?>
                 </h1>
             </div>
         </div>

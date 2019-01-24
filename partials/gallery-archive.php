@@ -21,7 +21,16 @@
         $posts_count = wp_count_posts('post')->publish;
 ?>
 
-<div class="order-posts padding-top-small padding-bottom-small cinza-bg"></div>
+<div id="orderPosts" class="padding-top-small padding-bottom-small cinza-bg">
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-12 d-flex flex-row justify-content-center flex-wrap">
+                <a class="order_button btn" data-order="desc">Mais recentes</a>
+                <a class="order_button btn" data-order="asc">Mais antigas</a>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="branco-bg filters border-bottom-cinza padding-top-small padding-bottom-small">
     <div class="custom-container">
         <div class="row">
@@ -36,7 +45,7 @@
                         if( 0 != $term->count ):
                             $cor = get_field('cor', 'category_' . $term->term_id );
                 ?>
-                    <a class="tag <?php echo $cor ?>-bg cinza-3 filter filter_posts" data-post-type="post" data-post-category="<?php echo $term->slug; ?>"><?php echo $term->name; ?></a>
+                    <a class="tag <?php echo $cor ?> cinza-3 filter filter_posts" data-post-type="post" data-category="<?php echo $term->slug; ?>"><?php echo $term->name; ?></a>
                 <?php endif; }?>
             </div>
         </div>
@@ -44,7 +53,7 @@
 </div>
 <section class="gallery archive branco-bg padding-top-medium padding-bottom-xlarge">
     <div class="custom-container">
-        <div class="row">
+        <div class="row" id="ajaxContainer">
             <?php
                 $i = 1;
                 while ($posts_query -> have_posts()) : $posts_query -> the_post();
@@ -52,6 +61,10 @@
                 if ( ! empty( $postcat ) ) {
                     $area_slug = $postcat[0]->slug;
                     $area_name = $postcat[0]->name;
+
+                    $term_id = $postcat[0]->term_id;
+                    $taxonomy = $postcat[0]->taxonomy;
+                    $color = get_field('cor', $taxonomy . '_' . $term_id);
                 }
             ?>
                 <a class="col-12 col-md-2 col-lg-4" href="<?php the_permalink() ?>">
@@ -65,11 +78,12 @@
                             <?php echo wp_get_attachment_image(get_post_thumbnail_id(), 'medium_large'); ?>
                         </figure>
                         <div class="post-info">
-                            <h1 class="h4"><span class="tag"><?php echo $area_name; ?></span><?php the_title(); ?></h1>
+                            <h1 class="h4"><span class="tag<?php echo " ".$color."-bg" ?>"><?php echo $area_name; ?></span><?php the_title(); ?></h1>
                             <p class="meta"><span class="autor">Por <?php echo get_the_author_meta( $field = 'nickname', $user_id = false ); ?></span><span class="data"><?php echo $post_dia ?> de <?php echo $post_mes ?></span></p>
                         </div>
                     </article>
                 </a>
+
             <?php $i++; endwhile; ?>
         </div>
         <div class="row">

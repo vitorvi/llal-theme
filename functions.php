@@ -143,6 +143,7 @@ function llal_scripts() {
 	wp_enqueue_script( 'owl', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), $ver = false, false );
 	wp_enqueue_script( 'loadmore', get_template_directory_uri().'/js/loadmore.js', array( 'jquery'  ) );
     wp_localize_script( 'loadmore', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')) );
+    wp_localize_script('my-ajax-handle', 'the_ajax_script', array('ajax_url' => admin_url('admin-ajax.php')));
 	wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'bootstrap'), $ver = false, true );
 }
 
@@ -184,69 +185,215 @@ function maintenance_option_html()
   <?php
 }
 
-add_action( 'wp_ajax_more_posts', 'more_posts' );
-add_action( 'wp_ajax_nopriv_more_posts', 'more_posts' );
+add_action( 'wp_ajax_load_posts', 'load_posts' );
+add_action( 'wp_ajax_nopriv_load_posts', 'load_posts' );
 
-function more_posts(){
-		global $post;
-		if ($_POST['category']):
-			$tax_query = array(
-					array (
-							'taxonomy' => 'material_type',
-							'field' => 'slug',
-							'tax_query' => array(
-									array (
-											'taxonomy' => 'material_type',
-											'field' => 'slug',
-											'terms' => $_POST['category'],
-									)
-							),
-							'terms' => $_POST['category'],
-					)
-			);
-		else:
-			$tax_query = '';
-		endif;
-		$args = array(
-			'post_type' => $_POST['post_type'],
-			'posts_per_page' => $_POST['ppp'],
-			'offset' => $_POST['offset'],
-			'order' => $_POST['order'],
+function load_posts(){
+    global $post;
+	$tax_query = '';
+	$args = array(
+		'post_type' => $_POST['post_type'],
+		'posts_per_page' => $_POST['ppp'],
+		'offset' => $_POST['offset'],
+		'order' => $_POST['order'],
+		'post_status' => 'publish',
+		'tax_query' => $tax_query
+	);
+	$posts=[];
+	$query = new WP_Query($args);
+	$posts_count = $query->found_posts;
+	if($query->have_posts()):
+			$i = 0;
+			while($query->have_posts()):$query->the_post();
+				if (get_the_title()):
+					$posts[$i]['title'] = get_the_title();
+				endif;
+				if (get_permalink()):
+					$posts[$i]['permalink'] = get_permalink();
+				endif;
+				if (get_the_post_thumbnail_url()):
+					$posts[$i]['thumb'] = wp_get_attachment_image(get_post_thumbnail_id(), 'medium_large');
+				endif;
+				if (get_the_author_meta( $field = 'nickname', $user_id = false )):
+					$posts[$i]['author'] = get_the_author_meta( $field = 'nickname', $user_id = false );
+				endif;
+				if ( get_the_date()):
+					$posts[$i]['day'] = get_the_date( 'j' );
+					$posts[$i]['month'] = get_the_date( 'F' );
+					$posts[$i]['year'] = get_the_date( 'Y' );
+				endif;
+				if (get_the_terms( $post->ID, 'category' )):
+
+					$terms = get_the_terms( $post->ID, 'category' );
+
+					$posts[$i]['category_name'] = $terms[0]->name;
+					$posts[$i]['category_slug'] = $terms[0]->slug;
+
+                    $term_id = $terms[0]->term_id;
+                    $taxonomy = $terms[0]->taxonomy;
+                    $posts[$i]['color'] = get_field('cor', $taxonomy . '_' . $term_id);
+
+				endif;
+				$i++;
+			endwhile;
+			wp_reset_postdata();
+			$offset = $_POST['offset']+$_POST['ppp'];
+	endif;
+	wp_send_json_success(array('posts'=>$posts, 'offset'=>$offset, 'posts_count'=>$posts_count));
+}
+
+add_action( 'wp_ajax_filter_posts', 'filter_posts' );
+add_action( 'wp_ajax_nopriv_filter_posts', 'filter_posts' );
+
+function filter_posts(){
+    if ($_POST['category'] == '') {
+        $args = array(
+            'post_type'=>$_POST['post_type'],
+            'posts_per_page'=> $_POST['ppp'],
 			'post_status' => 'publish',
-			'tax_query' => $tax_query
-		);
-		$posts=[];
-		$query = new WP_Query($args);
+            'order'=> $_POST['order'],
+            'offset'=> 0
+        );
+    } else {
+        $args = array(
+            'post_type'=>$_POST['post_type'],
+            'tax_query' => array(
+                array (
+                    'taxonomy' => 'category',
+                    'field' => 'slug',
+                    'tax_query' => array(
+                        array (
+                            'taxonomy' => 'category',
+                            'field' => 'slug',
+                            'terms' => $_POST['category'],
+                        )
+                    ),
+                    'terms' => $_POST['category'],
+                )
+            ),
+            'posts_per_page'=> $_POST['ppp'],
+            'offset'=> 0,
+            'order'=> $_POST['order'],
+			'post_status' => 'publish'
+        );
+    }
+    $posts = [];
+    $query = new WP_Query($args);
 		$posts_count = $query->found_posts;
-		if($query->have_posts()):
-				$i = 0;
-				while($query->have_posts()):$query->the_post();
-					if (get_the_title()):
-						$posts[$i]['title'] = get_the_title();
-					endif;
-					if (get_permalink()):
-						$posts[$i]['permalink'] = get_permalink();
-					endif;
-					if (get_the_post_thumbnail_url()):
-						$posts[$i]['thumb'] = get_the_post_thumbnail_url();
-					endif;
-					if (get_the_author_meta()):
-						$posts[$i]['author'] = get_the_author_meta( $field = 'nickname', $user_id = false );
-					endif;
-					if ( get_the_date()):
-						$posts[$i]['day'] = get_the_date( 'j' );
-						$posts[$i]['month'] = get_the_date( 'F' );
-						$posts[$i]['year'] = get_the_date( 'Y' );
-					endif;
-					if (get_the_terms()):
-						$terms = get_the_terms( $post->ID, 'category' );
-						$posts[$i]['category_name'] = $terms[0]->name;
-						$posts[$i]['category_slug'] = $terms[0]->name;
-					endif;
-					$i++;
-				endwhile;
-				wp_reset_postdata();
-				$offset = $_POST['offset']+$_POST['ppp'];
-		endif;
-		wp_send_json_success(array('posts'=>$posts, 'offset'=>$offset, 'posts_count'=>$posts_count));
+    if($query->have_posts()):
+        $i = 0;
+        while($query->have_posts()):$query->the_post();
+            if (get_the_title()):
+                $posts[$i]['title'] = get_the_title();
+            endif;
+            if (get_permalink()):
+                $posts[$i]['permalink'] = get_permalink();
+            endif;
+            if (get_the_post_thumbnail_url()):
+                $posts[$i]['thumb'] = wp_get_attachment_image(get_post_thumbnail_id(), 'medium_large');
+            endif;
+            if (get_the_author_meta( $field = 'nickname', $user_id = false )):
+                $posts[$i]['author'] = get_the_author_meta( $field = 'nickname', $user_id = false );
+            endif;
+            if ( get_the_date()):
+                $posts[$i]['day'] = get_the_date( 'j' );
+                $posts[$i]['month'] = get_the_date( 'F' );
+                $posts[$i]['year'] = get_the_date( 'Y' );
+            endif;
+            if (get_the_terms( $post->ID, 'category' )):
+
+                $terms = get_the_terms( $post->ID, 'category' );
+
+                $posts[$i]['category_name'] = $terms[0]->name;
+                $posts[$i]['category_slug'] = $terms[0]->slug;
+
+                $term_id = $terms[0]->term_id;
+                $taxonomy = $terms[0]->taxonomy;
+                $posts[$i]['color'] = get_field('cor', $taxonomy . '_' . $term_id);
+
+            endif;
+            $i++;
+        endwhile;
+        wp_reset_postdata();
+        $offset = $_POST['offset'] + $_POST['ppp'];
+    endif;
+    wp_send_json_success(array('offset'=>$offset, 'posts'=>$posts, 'posts_count'=>$posts_count));
+}
+
+add_action( 'wp_ajax_order_posts', 'order_posts' );
+add_action( 'wp_ajax_nopriv_order_posts', 'order_posts' );
+
+function order_posts(){
+    if ($_POST['category'] == '') {
+        $args = array(
+            'post_type'=> $_POST['post_type'],
+            'posts_per_page'=> $_POST['ppp'],
+			'post_status' => 'publish',
+            'order'=> $_POST['order'],
+            'offset'=> 0
+        );
+    } else {
+        $args = array(
+            'post_type'=>$_POST['post_type'],
+            'tax_query' => array(
+                array (
+                    'taxonomy' => 'category',
+                    'field' => 'slug',
+                    'tax_query' => array(
+                        array (
+                            'taxonomy' => 'category',
+                            'field' => 'slug',
+                            'terms' => $_POST['category'],
+                        )
+                    ),
+                    'terms' => $_POST['category'],
+                )
+            ),
+            'posts_per_page'=> $_POST['ppp'],
+            'offset'=> 0,
+            'order'=> $_POST['order'],
+			'post_status' => 'publish'
+        );
+    }
+    $posts = [];
+    $query = new WP_Query($args);
+		$posts_count = $query->found_posts;
+    if($query->have_posts()):
+        $i = 0;
+        while($query->have_posts()):$query->the_post();
+            if (get_the_title()):
+                $posts[$i]['title'] = get_the_title();
+            endif;
+            if (get_permalink()):
+                $posts[$i]['permalink'] = get_permalink();
+            endif;
+            if (get_the_post_thumbnail_url()):
+                $posts[$i]['thumb'] = wp_get_attachment_image(get_post_thumbnail_id(), 'medium_large');
+            endif;
+            if (get_the_author_meta( $field = 'nickname', $user_id = false )):
+                $posts[$i]['author'] = get_the_author_meta( $field = 'nickname', $user_id = false );
+            endif;
+            if ( get_the_date()):
+                $posts[$i]['day'] = get_the_date( 'j' );
+                $posts[$i]['month'] = get_the_date( 'F' );
+                $posts[$i]['year'] = get_the_date( 'Y' );
+            endif;
+            if (get_the_terms( $post->ID, 'category' )):
+
+                $terms = get_the_terms( $post->ID, 'category' );
+
+                $posts[$i]['category_name'] = $terms[0]->name;
+                $posts[$i]['category_slug'] = $terms[0]->slug;
+
+                $term_id = $terms[0]->term_id;
+                $taxonomy = $terms[0]->taxonomy;
+                $posts[$i]['color'] = get_field('cor', $taxonomy . '_' . $term_id);
+
+            endif;
+            $i++;
+        endwhile;
+        wp_reset_postdata();
+        $offset = $_POST['offset'] + $_POST['ppp'];
+    endif;
+    wp_send_json_success(array('offset'=>$offset, 'posts'=>$posts, 'posts_count'=>$posts_count));
 }
