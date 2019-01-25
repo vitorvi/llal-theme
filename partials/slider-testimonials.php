@@ -15,12 +15,12 @@
     if ($posts_query -> have_posts()) :
 ?>
 
-    <section class="slider testimonials padding-top-large padding-bottom-xlarge turquesa-bg">
+    <section class="slider testimonials padding-top-large turquesa-bg">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12 text-center">
 
-                    <div class="owl-carousel owl-theme">
+                    <div class="owl-carousel owl-theme padding-bottom-xlarge">
                         <?php
                             while ($posts_query -> have_posts()) : $posts_query -> the_post();
                             $postcat = get_the_category( $post->ID );
@@ -29,7 +29,7 @@
                                 $area_name = $postcat[0]->name;
                             }
                         ?>
-                            <a class="row subrow" href="<?php the_permalink() ?>">
+                            <div class="row subrow">
                                 <?php
                                    $post_dia = get_the_date( 'j' );
                                    $post_mes = get_the_date( 'F' );
@@ -46,7 +46,7 @@
                                     <?php the_field('texto') ?>
                                     <p class="meta branco d-none d-lg-block"><span class="autor"><?php the_title(); ?>, </span><span class="cargo"><?php the_field('cargo'); ?></span></p>
                                 </div>
-                            </a>
+                            </div>
 
                         <?php
                         	endwhile;

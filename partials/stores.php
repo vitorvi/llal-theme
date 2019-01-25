@@ -21,7 +21,7 @@
             <div class="col-12 col-lg-5 offset-lg-7 padding-top-xlarge padding-bottom-xlarge">
                 <h2><?php echo $banner['titulo'] ?></h2>
                 <p><?php echo $banner['intro'] ?></p>
-                <?php if ($banner['link']) : ?>
+                <?php if (array_key_exists('link', $banner)) : ?>
                     <a class="btn button-large margin-top-medium" href="<?php echo $banner['link'] ?>">
                         <?php echo $banner['chamada'] ?>
                     </a>
