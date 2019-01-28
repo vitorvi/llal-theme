@@ -35,16 +35,16 @@
                                    $post_mes = get_the_date( 'F' );
                                    $post_ano = get_the_date( 'Y' );
                                 ?>
-                                <figure class="col-5 col-lg-3 offset-lg-1">
+                                <figure class="col-5 col-lg-3 offset-lg-1 margin-bottom-xsmall">
                                     <?php echo wp_get_attachment_image(get_post_thumbnail_id(), 'medium_large'); ?>
                                 </figure>
                                 <div class="col-7 d-lg-none">
-                                    <p class="autor branco"><?php the_title(); ?></p>
+                                    <p class="autor branco"><strong><?php the_title(); ?></strong></p>
                                     <p class="cargo branco"><?php the_field('cargo'); ?></p>
                                 </div>
                                 <div class="testimonial-info col-12 col-lg-6 offset-lg-1">
-                                    <?php the_field('texto') ?>
-                                    <p class="meta branco d-none d-lg-block"><span class="autor"><?php the_title(); ?>, </span><span class="cargo"><?php the_field('cargo'); ?></span></p>
+                                    <p class="text-large branco"><?php the_field('texto') ?></p>
+                                    <p class="meta branco d-none d-lg-block text-large"><strong class="autor"><?php the_title(); ?>, </strong><span class="cargo"><?php the_field('cargo'); ?></span></p>
                                 </div>
                             </div>
 
@@ -63,9 +63,16 @@
         var owl_testimonials = $('.slider.testimonials .owl-carousel');
         owl_testimonials.owlCarousel({
             loop: true,
-            nav: true,
             dots: true,
-            items: 1
+            items: 1,
+            responsive : {
+                0 : {
+                    nav: false
+                },
+                1025 : {
+                    nav: true
+                }
+            }
         });
     </script>
 

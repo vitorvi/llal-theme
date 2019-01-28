@@ -26,9 +26,9 @@
                         <div class="item">
                             <div class="custom-container padding-top-xlarge padding-bottom-large">
                                 <div class="row">
-                                    <div class="col-12 col-lg-4">
-                                        <h3 class="ano margin-top-xsmall text-center text-md-left"><?php the_sub_field('titulo'); ?></h2>
-                                        <p class="texto margin-top-xsmall"><?php the_sub_field('texto'); ?></p>
+                                    <div class="col-12 col-lg-4 padding-bottom-large">
+                                        <h3 class="ano margin-top-xsmall text-center text-md-left turquesa"><?php the_sub_field('titulo'); ?></h2>
+                                        <p class="texto margin-top-xsmall text-center text-lg-left"><?php the_sub_field('texto'); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -40,9 +40,11 @@
             <div id="navTimeline">
                 <div class="custom-container">
                     <div class="row">
-                        <div class="col-12 col-lg-4">
-                            <button class="prev disabled"></button>
-                            <button class="next"></button>
+                        <div class="col-12 col-lg-4 padding-bottom-large">
+                            <div class="position-relative">
+                                <button class="prev disabled"></button>
+                                <button class="next"></button>
+                            </div>
                         </div>
                     </div>
                 </div>

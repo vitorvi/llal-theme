@@ -509,14 +509,13 @@ h2, .h2 {
   font-family: urbana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 30px;
   line-height: 1.5rem;
-  text-transform: lowercase;
+  text-transform: uppercase;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.7);
   margin-bottom: 0;
   letter-spacing: 1px;
   word-spacing: 1px;
-  font-style: normal;
-  font-variant: all-small-caps; }
+  font-style: normal; }
   @media (min-width: 1025px) {
     h2, .h2 {
       font-style: normal;
@@ -609,14 +608,13 @@ h6, .h6 {
   font-family: urbana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 30px;
   line-height: 1.5rem;
-  text-transform: lowercase;
+  text-transform: uppercase;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.7);
   margin-bottom: 0;
   letter-spacing: 1px;
   word-spacing: 1px;
-  font-style: normal;
-  font-variant: all-small-caps; }
+  font-style: normal; }
   @media (min-width: 1025px) {
     .custom-content h1, .custom-content .h1 {
       font-style: normal;
@@ -637,8 +635,8 @@ h6, .h6 {
   margin-top: 1rem; }
 
 p, .text-medium, a, li, li a {
-  font-family: urbana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 20px;
+  font-family: "Asap", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 18px;
   line-height: 1.5rem;
   font-weight: 400;
   margin-bottom: 0;
@@ -648,14 +646,16 @@ p, .text-medium, a, li, li a {
   color: rgba(0, 0, 0, 0.7); }
   @media (min-width: 1025px) {
     p, .text-medium, a, li, li a {
-      font-size: 25px;
+      font-size: 22px;
       font-style: normal; } }
+  p strong, .text-medium strong, a strong, li strong, li a strong {
+    font-weight: 700; }
 
 p, li {
   color: rgba(0, 0, 0, 0.7); }
 
 .text-small {
-  font-family: urbana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-family: "Asap", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
   margin-bottom: .5rem;
   text-transform: none;
@@ -672,14 +672,13 @@ p, li {
 
 blockquote, .text-large, blockquote p {
   font-family: urbana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 20px;
-  line-height: 1rem;
+  font-size: 25px;
+  line-height: 1.5rem;
   font-weight: 300;
   margin-bottom: 0;
   font-style: normal;
   text-transform: none;
   letter-spacing: 0;
-  font-weight: 300;
   color: rgba(0, 0, 0, 0.7); }
   @media (min-width: 1025px) {
     blockquote, .text-large, blockquote p {
@@ -687,9 +686,11 @@ blockquote, .text-large, blockquote p {
       font-weight: 300;
       font-size: 40px;
       line-height: 2rem; } }
+  blockquote strong, .text-large strong, blockquote p strong {
+    font-weight: 600; }
 
 figcaption, input, textarea {
-  font-family: urbana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-family: "Asap", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
   margin-bottom: .5rem;
   text-transform: none;
@@ -7293,49 +7294,49 @@ a.text-dark:hover, a.text-dark:focus {
       margin-bottom: 2.5rem; } }
 
 .padding-top-large {
-  padding-top: 2.5rem; }
+  padding-top: 3rem; }
   @media (min-width: 1025px) {
     .padding-top-large {
       padding-top: 4rem; } }
 
 .padding-bottom-large {
-  padding-bottom: 2.5rem; }
+  padding-bottom: 3rem; }
   @media (min-width: 1025px) {
     .padding-bottom-large {
       padding-bottom: 4rem; } }
 
 .margin-top-large {
-  margin-top: 2.5rem; }
+  margin-top: 3rem; }
   @media (min-width: 1025px) {
     .margin-top-large {
       margin-top: 4rem; } }
 
 .margin-bottom-large {
-  margin-bottom: 2.5rem; }
+  margin-bottom: 3rem; }
   @media (min-width: 1025px) {
     .margin-bottom-large {
       margin-bottom: 4rem; } }
 
 .padding-top-xlarge {
-  padding-top: 3rem; }
+  padding-top: 4rem; }
   @media (min-width: 1025px) {
     .padding-top-xlarge {
       padding-top: 5rem; } }
 
 .padding-bottom-xlarge {
-  padding-bottom: 3rem; }
+  padding-bottom: 4rem; }
   @media (min-width: 1025px) {
     .padding-bottom-xlarge {
       padding-bottom: 5rem; } }
 
 .margin-top-xlarge {
-  margin-top: 3rem; }
+  margin-top: 4rem; }
   @media (min-width: 1025px) {
     .margin-top-xlarge {
       margin-top: 5rem; } }
 
 .margin-bottom-xlarge {
-  margin-bottom: 3rem; }
+  margin-bottom: 4rem; }
   @media (min-width: 1025px) {
     .margin-bottom-xlarge {
       margin-bottom: 5rem; } }
@@ -7611,22 +7612,90 @@ address {
   border: none;
   border-radius: 0; }
 
+.stores {
+  position: relative; }
+  .stores .stores-cover {
+    height: 100vw;
+    width: 100%;
+    object-fit: cover; }
+  @media (min-width: 1025px) {
+    .stores {
+      paddig-top: 0; }
+      .stores .stores-cover {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 100%; } }
+
 .slider .owl-theme .owl-dots {
   position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%); }
+  bottom: 1.5rem;
+  left: 0; }
   @media (min-width: 1025px) {
     .slider .owl-theme .owl-dots {
-      bottom: 2.5rem; } }
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%); } }
   .slider .owl-theme .owl-dots button span {
     width: 1.5rem;
     height: .25rem;
     margin: .25rem; }
   .slider .owl-theme .owl-dots .owl-dot span {
-    background: rgba(196, 196, 196, 0.5); }
+    background: rgba(255, 255, 255, 0.5); }
   .slider .owl-theme .owl-dots .owl-dot.active span, .slider .owl-theme .owl-dots .owl-dot:hover span {
-    background: #c4c4c4; }
+    background: white; }
+.slider .owl-theme .owl-nav {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 50%; }
+  .slider .owl-theme .owl-nav button {
+    position: absolute;
+    bottom: 0; }
+    .slider .owl-theme .owl-nav button.owl-prev {
+      left: 0; }
+    .slider .owl-theme .owl-nav button.owl-next {
+      right: 0; }
+    .slider .owl-theme .owl-nav button span {
+      font-size: 4rem;
+      color: #FFFFFF; }
+.slider.timeline {
+  position: relative; }
+  .slider.timeline .ano {
+    font-size: 40px;
+    line-height: 2rem;
+    font-weight: 600; }
+    @media (min-width: 1025px) {
+      .slider.timeline .ano {
+        font-size: 64px;
+        line-height: 3rem;
+        font-weight: 300; } }
+  @media (min-width: 1025px) {
+    .slider.timeline .imagem {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 60%;
+      height: 100%; }
+      .slider.timeline .imagem img {
+        height: 100%;
+        object-fit: cover; } }
+  .slider.timeline #navTimeline {
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
+    .slider.timeline #navTimeline .prev, .slider.timeline #navTimeline .next {
+      position: absolute;
+      bottom: 0; }
+    .slider.timeline #navTimeline .prev {
+      left: 0; }
+    .slider.timeline #navTimeline .next {
+      right: 0; }
+.slider.archive .owl-carousel .owl-stage-outer {
+  overflow: visible; }
 .slider.archive-full .slider-grad {
   opacity: 0; }
   .slider.archive-full .slider-grad.active {
@@ -7637,22 +7706,52 @@ address {
   left: 50%;
   transform: translateX(-50%); }
 .slider.archive-full .owl-carousel.bg img {
+  object-fit: cover;
   height: calc(100vh - 8rem); }
-.slider.archive-full .owl-nav {
-  position: absolute;
-  width: 100%;
-  left: 0;
+.slider.archive-full .owl-theme .owl-nav {
   bottom: 0; }
-  .slider.archive-full .owl-nav button {
-    position: absolute;
+  .slider.archive-full .owl-theme .owl-nav button {
     bottom: 5rem; }
-    .slider.archive-full .owl-nav button.owl-prev {
-      left: 0; }
-    .slider.archive-full .owl-nav button.owl-next {
-      right: 0; }
-    .slider.archive-full .owl-nav button span {
-      font-size: 4rem;
-      color: #FFFFFF; }
+.slider.brand .owl-theme .owl-dots .owl-dot span {
+  background: rgba(196, 196, 196, 0.5); }
+.slider.brand .owl-theme .owl-dots .owl-dot.active span, .slider.brand .owl-theme .owl-dots .owl-dot:hover span {
+  background: #c4c4c4; }
+
+.golden-circle {
+  position: relative; }
+  .golden-circle #theCircle {
+    position: relative;
+    padding-bottom: 100%; }
+    .golden-circle #theCircle .nav-link {
+      border: 2px solid #FCBF2A; }
+  .golden-circle #oqueIlustra {
+    position: absolute;
+    padding: 0;
+    padding-bottom: 100%;
+    width: 100%;
+    border-radius: 50%; }
+  .golden-circle #comoIlustra {
+    position: absolute;
+    width: calc(100% - 6rem);
+    top: 3rem;
+    left: 3rem;
+    padding: 0;
+    padding-bottom: calc(100% - 6rem);
+    border-radius: 50%; }
+  .golden-circle #porqueIlustra {
+    position: absolute;
+    width: calc(100% - 12rem);
+    top: 6rem;
+    left: 6rem;
+    padding: 0;
+    padding-bottom: calc(100% - 12rem);
+    border-radius: 50%; }
+    .golden-circle #porqueIlustra .logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      max-width: 50%; }
 
 .page-header {
   box-shadow: 0 2px 4px 0 rgba(104, 52, 49, 0.1);

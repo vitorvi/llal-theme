@@ -82,8 +82,8 @@
                             ?>
                                 <a href="<?php the_permalink() ?>" class="full-height padding-bottom-xlarge item d-flex flex-column justify-content-end" data-category="<?php echo $category_slug ?>" data-color="<?php echo $cor; ?>">
                                     <div class="row subrow">
-                                        <div class="col-10 offset-1 col-lg-8 offset-lg-2">
-                                            <p class="tag branco-bg d-inline-block <?php echo $cor ?>"><?php echo $category_name ?></p>
+                                        <div class="col-12 col-lg-8 offset-lg-2">
+                                            <p class="tag branco-bg d-inline-block margin-bottom-xsmall <?php echo $cor ?>"><?php echo $category_name ?></p>
                                             <h2 class="h1 branco"><?php the_title(); ?></h2>
                                         </div>
                                     </div>
@@ -102,8 +102,15 @@
         owl_highlights.owlCarousel({
             loop: true,
             dots: true,
-            nav: true,
-            items: 1
+            items: 1,
+            responsive : {
+                0 : {
+                    nav: false
+                },
+                1025 : {
+                    nav: true
+                }
+            }
         });
 
         var owl_highlights_bg = $('.slider.archive-full .owl-carousel.bg');

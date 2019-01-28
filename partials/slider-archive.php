@@ -8,7 +8,7 @@
 
 <?php
     $query_args = array(
-        'posts_per_page' => 6 ,
+        'posts_per_page' => 3 ,
         'post_type' => 'post'
     );
     $posts_query = new WP_Query( $query_args );
@@ -20,6 +20,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="text-center">Notícias & Novidades</h2>
+                </div>
+                <div class="col-10 offset-1 offset-lg-0 col-lg-12 text-center">
 
                     <div class="owl-carousel owl-theme margin-top-medium">
                         <?php
@@ -66,15 +68,15 @@
             dots: false,
             responsive : {
                 0 : {
-                    margin: 24,
+                    margin: 20,
                     items: 1
                 },
                 768 : {
-                    margin: 24,
+                    margin: 20,
                     items: 2
                 },
                 1025 : {
-                    margin: 28,
+                    margin: 24,
                     items: 3
                 }
             }
