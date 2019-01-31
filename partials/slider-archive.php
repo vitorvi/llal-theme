@@ -30,6 +30,9 @@
                             if ( ! empty( $postcat ) ) {
                                 $area_slug = $postcat[0]->slug;
                                 $area_name = $postcat[0]->name;
+                                $taxonomy = $postcat[0]->taxonomy;
+                                $term_id = $postcat[0]->term_id;
+                                $color = get_field('cor', $taxonomy . '_' . $term_id);
                             }
                         ?>
                             <a class="item" href="<?php the_permalink() ?>">
@@ -43,8 +46,8 @@
                                         <?php echo wp_get_attachment_image(get_post_thumbnail_id(), 'medium_large'); ?>
                                     </figure>
                                     <div class="post-info">
-                                        <h1 class="h4"><span class="tag"><?php echo $area_name; ?></span><?php the_title(); ?></h1>
-                                        <p class="meta"><span class="autor">Por <?php echo get_the_author_meta( $field = 'nickname', $user_id = false ); ?></span><span class="data"><?php echo $post_dia ?> de <?php echo $post_mes ?></span></p>
+                                        <h1 class="h4 margin-bottom-micro"><span class="tag<?php echo " ".$color."-bg" ?>"><?php echo $area_name; ?></span><?php the_title(); ?></h1>
+                                        <p class="meta text-small"><span class="autor">Por <strong>&nbsp;<?php echo get_the_author_meta( $field = 'nickname', $user_id = false ); ?></strong></span><span class="data"><?php echo $post_dia ?> de <?php echo $post_mes ?></span></p>
                                     </div>
                                 </article>
                             </a>

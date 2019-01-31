@@ -19,7 +19,9 @@
 
     <main class="page archive">
 		<?php
-		    get_template_part( 'partials/slider', 'archive-full' );
+		  get_template_part( 'partials/slider', 'archive-full' );
+      get_template_part( 'partials/order-posts' );
+      get_template_part( 'partials/filters' );
 			get_template_part( 'partials/gallery', 'archive' );
 		?>
     </main>

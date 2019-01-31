@@ -6,7 +6,7 @@
  */
 ?>
 
-<section class="join-us cinza-bg padding-top-large padding-bottom-large">
+<section class="join-us cinza-1-bg padding-top-large padding-bottom-large">
     <div class="custom-container">
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2 text-center">

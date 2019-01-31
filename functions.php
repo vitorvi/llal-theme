@@ -122,10 +122,10 @@ function your_theme_new_customizer_settings($wp_customize) {
     $wp_customize->add_setting('negative_logo');
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'negative_logo',
     array(
-    'label' => 'Logo (Versão Negative)',
-    'section' => 'title_tagline',
-    'settings' => 'negative_logo',
-    'priority' => 1,
+      'label' => 'Logo (Versão Negative)',
+      'section' => 'title_tagline',
+      'settings' => 'negative_logo',
+      'priority' => 1
     ) ) );
 }
 add_action('customize_register', 'your_theme_new_customizer_settings');

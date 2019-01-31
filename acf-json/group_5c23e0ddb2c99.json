@@ -30,7 +30,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "25",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -90,7 +90,7 @@
                 },
                 {
                     "key": "field_5c46345d4c9bc",
-                    "label": "Elemento Gráfico",
+                    "label": "Elemento Gráfico Desktop",
                     "name": "elemento_grafico",
                     "type": "image",
                     "instructions": "",
@@ -113,6 +113,30 @@
                     "mime_types": ""
                 },
                 {
+                    "key": "field_5c50c7de056f5",
+                    "label": "Elemento Gráfico Mobile",
+                    "name": "elemento_grafico_mobile",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
                     "key": "field_5c23e1f8bcb0a",
                     "label": "Descrição",
                     "name": "descricao",
@@ -121,7 +145,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "75",
+                        "width": "25",
                         "class": "",
                         "id": ""
                     },
@@ -347,5 +371,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1548181220
+    "modified": 1548798235
 }

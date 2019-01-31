@@ -83,7 +83,7 @@
                                 <a href="<?php the_permalink() ?>" class="full-height padding-bottom-xlarge item d-flex flex-column justify-content-end" data-category="<?php echo $category_slug ?>" data-color="<?php echo $cor; ?>">
                                     <div class="row subrow">
                                         <div class="col-12 col-lg-8 offset-lg-2">
-                                            <p class="tag branco-bg d-inline-block margin-bottom-xsmall <?php echo $cor ?>"><?php echo $category_name ?></p>
+                                            <p class="tag branco-bg d-inline-block margin-bottom-xsmall <?php echo $cor ?>-bg"><?php echo $category_name ?></p>
                                             <h2 class="h1 branco"><?php the_title(); ?></h2>
                                         </div>
                                     </div>
@@ -105,10 +105,16 @@
             items: 1,
             responsive : {
                 0 : {
-                    nav: false
+                    nav: false,
+                    margin: 30
+                },
+                769 : {
+                    nav: false,
+                    margin: 0
                 },
                 1025 : {
-                    nav: true
+                    nav: true,
+                    margin: 0
                 }
             }
         });
@@ -121,7 +127,7 @@
             mouseDrag: false,
             touchDrag: false,
             pullDrag: false,
-            items: 1
+            items: 1,
         });
 
         var colorClass = $($('.slider.archive-full .content .owl-carousel .owl-item.active .item')).data('color');

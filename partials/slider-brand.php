@@ -13,59 +13,10 @@
         main {
             padding-top: 4.5rem;
         }
-        .owl-carousel.bg, .owl-carousel.content, .mask-container {
-            width: 100%;
-            height: 80vh;
-            position: relative;
-        }
-        .owl-carousel.bg, .mask-container {
-            pointer-events: none;
-        }
-        .owl-carousel.content, .mask-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .owl-carousel.content .owl-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .owl-carousel.bg .owl-stage-outer, .owl-carousel.bg .owl-stage, .owl-carousel.bg .owl-item, .owl-carousel.bg .item, .owl-carousel.bg img {
-            display: block;
-            height: 100%;
-            width: 100%;
-        }
-        .owl-carousel.bg img {
-            object-fit: cover;
-        }
-        .mask-container {
-            overflow: visible;
-        }
-        .owl-carousel.mask{
-            position: absolute;
-            top: calc(50% - 50vw);
-            left: calc(50% - 40vh);
-            height: 100vw;
-            width: 80vh;
-            transform: rotate(-270deg);
-        }
-        .owl-carousel.mask .item {
-            height: 100vw;
-            transform-origin: center;
-            transform: rotate(180deg);
-        }
-        .owl-carousel.mask .item img {
-            object-fit: cover;
-            width: 100vw;
-            height: calc(80vh + 120px);
-            transform-origin: top left;
-            transform: translateX(calc(80vh + 60px)) rotate(90deg);
-        }
+
     </style>
 
-    <section class="slider brand branco-bg position-relative">
+    <section class="slider brand branco-bg position-relative full-height">
 
             <div class="owl-carousel owl-theme bg turquesa-bg">
                 <?php while ( have_rows('capa') ) : the_row(); ?>
@@ -75,10 +26,13 @@
                 <?php endwhile; ?>
             </div>
 
-            <div class="mask-container d-none d-md-block">
+            <div class="mask-container">
                 <div class="owl-carousel owl-theme mask">
                     <?php while ( have_rows('capa') ) : the_row(); ?>
-                        <div class="item"><?php echo wp_get_attachment_image(get_sub_field('elemento_grafico'), 'full'); ?></div>
+                        <div class="item">
+                          <?php echo wp_get_attachment_image(get_sub_field('elemento_grafico'), 'full', '', array('class'=>'d-none d-md-block')); ?>
+                          <?php echo wp_get_attachment_image(get_sub_field('elemento_grafico_mobile'), 'full', '', array('class'=>'d-block d-md-none')); ?>
+                        </div>
                     <?php endwhile; ?>
                 </div>
             </div>
@@ -92,7 +46,7 @@
                                     <h2 class="h1 marrom text-center text-md-right margin-bottom-small margin-top-small"><?php the_sub_field('titulo') ?>&nbsp;</h2>
                                 </div>
                                 <div class="col-12 col-md-4 offset-md-3">
-                                    <div class="imagem margin-bottom-small">
+                                    <div class="imagem margin-bottom-small padding-top-small">
                                         <div class="row subrow">
                                             <div class="d-none d-md-flex col-12">
                                                 <?php echo wp_get_attachment_image(get_sub_field('imagem'), 'large'); ?>
@@ -102,7 +56,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-large branco text-center text-md-left"><?php the_sub_field('descricao') ?></p>
+                                    <p class="text-large descricao text-center text-md-left margin-bottom-large"><?php the_sub_field('descricao') ?></p>
                                 </div>
                             </div>
                         </div>
@@ -134,8 +88,14 @@
             touchDrag: false,
             pullDrag: false,
             items: 1,
-            margin: 0,
-            margin: 120
+            responsive : {
+                0 : {
+                    margin: 0
+                },
+                768 : {
+                    margin: 120
+                }
+            }
         });
 
         var owl_brand_content = $('.slider.brand .owl-carousel.content');
@@ -147,7 +107,7 @@
             touchDrag: false,
             pullDrag: false,
             items: 1,
-            animateOut: 'fadeOut',
+            animateOut: 'fadeOut'
         });
 
         owl_brand_content.on('change.owl.carousel', function(event) {

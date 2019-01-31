@@ -8,7 +8,7 @@
 
 <?php
     if( have_rows('nossa_historia') ): ?>
-        <section class="slider timeline cinza-bg">
+        <section class="slider timeline cinza-1-bg">
             <div class="titulo w-100 position-absolute">
                 <div class="custom-container">
                     <div class="row">
@@ -26,7 +26,7 @@
                         <div class="item">
                             <div class="custom-container padding-top-xlarge padding-bottom-large">
                                 <div class="row">
-                                    <div class="col-12 col-lg-4 padding-bottom-large">
+                                    <div class="col-12 col-lg-4">
                                         <h3 class="ano margin-top-xsmall text-center text-md-left turquesa"><?php the_sub_field('titulo'); ?></h2>
                                         <p class="texto margin-top-xsmall text-center text-lg-left"><?php the_sub_field('texto'); ?></p>
                                     </div>
@@ -41,9 +41,9 @@
                 <div class="custom-container">
                     <div class="row">
                         <div class="col-12 col-lg-4 padding-bottom-large">
-                            <div class="position-relative">
-                                <button class="prev disabled"></button>
-                                <button class="next"></button>
+                            <div class="d-flex d-row justify-content-between">
+                                <button class="prev button-large turquesa disabled"></button>
+                                <button class="next button-large turquesa"></button>
                             </div>
                         </div>
                     </div>
