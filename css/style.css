@@ -394,6 +394,17 @@ img, svg {
 button:focus {
   outline: none; }
 
+*::-webkit-scrollbar {
+  width: .5rem;
+  color: #0FB1A9; }
+
+*::-webkit-scrollbar-track {
+  background-color: #F2F2F2; }
+
+*::-webkit-scrollbar-thumb {
+  background-color: #BDBDBD;
+  outline: none; }
+
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
@@ -8213,16 +8224,93 @@ address {
 
 .stores-search {
   position: relative; }
+  @media (max-width: 767.98px) {
+    .stores-search {
+      padding-top: 100%; } }
+  .stores-search .dropdown .dropdown-toggle {
+    background-color: transparent;
+    padding: .5rem; }
+    .stores-search .dropdown .dropdown-toggle::after {
+      display: none; }
+  .stores-search .dropdown-menu {
+    width: 100%; }
+    .stores-search .dropdown-menu .dropdown-item {
+      padding: .5rem;
+      color: rgba(0, 0, 0, 0.7); }
+      .stores-search .dropdown-menu .dropdown-item:hover {
+        background-color: #F2F2F2;
+        color: #AC4FC6; }
   .stores-search #listaLojas {
-    height: 60vh;
-    overflow-y: scroll; }
+    min-height: 25vh;
+    max-height: 50vh;
+    overflow-y: auto; }
+    @media (max-width: 767.98px) {
+      .stores-search #listaLojas {
+        max-height: 40vh; } }
+    .stores-search #listaLojas .loja {
+      position: relative;
+      cursor: pointer;
+      padding: 1rem .5rem;
+      border-bottom: 1px solid #E0E0E0;
+      transition: background-color .15s linear; }
+      .stores-search #listaLojas .loja:hover {
+        background-color: #F2F2F2; }
+      .stores-search #listaLojas .loja:hover::after {
+        color: #AC4FC6; }
+      .stores-search #listaLojas .loja::after {
+        content: 'Localizar';
+        color: #828282;
+        position: absolute;
+        right: .5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 300;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        font-size: 18px;
+        line-height: 24px; }
   .stores-search #map {
-    height: 100%;
-    width: 50%;
+    height: 100vw;
+    width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0; }
+    @media (min-width: 768px) {
+      .stores-search #map {
+        width: 50%;
+        height: 100%; } }
+  .stores-search .mapboxgl-popup {
+    min-width: calc(100% - $grid-gutter-width);
+    border-radius: .25rem;
+    box-shadow: 0px 0.25rem 0.5rem rgba(51, 51, 51, 0.5); }
+    @media (min-width: 1025px) {
+      .stores-search .mapboxgl-popup {
+        min-width: 66.66666%; } }
+    @media (min-width: 1441px) {
+      .stores-search .mapboxgl-popup {
+        min-width: 50%; } }
+    .stores-search .mapboxgl-popup .mapboxgl-popup-tip {
+      display: none; }
+    .stores-search .mapboxgl-popup .mapboxgl-popup-content {
+      border-radius: .25rem;
+      padding: 1rem;
+      width: 100%; }
+      .stores-search .mapboxgl-popup .mapboxgl-popup-content .mapboxgl-popup-close-button {
+        display: none; }
+      .stores-search .mapboxgl-popup .mapboxgl-popup-content h4, .stores-search .mapboxgl-popup .mapboxgl-popup-content p {
+        padding-right: 4rem; }
+      .stores-search .mapboxgl-popup .mapboxgl-popup-content .link {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: #AC4FC6; }
+        @media (min-width: 768px) {
+          .stores-search .mapboxgl-popup .mapboxgl-popup-content .link {
+            padding-top: 2.5rem; } }
+      .stores-search .mapboxgl-popup .mapboxgl-popup-content p {
+        margin-top: 0;
+        margin-bottom: 0; }
 
 .stores {
   position: relative; }

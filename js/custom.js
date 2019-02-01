@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     var header_height = $('.page-header').outerHeight();
-  
+
     if ($(document).scrollTop() > 117 ) {
         if ( $('.page-header').hasClass( 'shrunk' ) === false ) {
             $('.page-header').addClass('shrunk');
@@ -16,8 +16,6 @@ $(document).ready(function(){
         event.preventDefault();
         $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1000);
     });
-
-    $('#parallax-stage').enllax();
 
 });
 

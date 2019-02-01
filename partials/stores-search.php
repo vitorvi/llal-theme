@@ -6,184 +6,303 @@
  */
 ?>
 
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+<?php
+  $postsPerPage = -1;
+  $postType = 'loja';
+  $order = 'desc';
+  $query_args = array(
+    'posts_per_page' => $postsPerPage,
+    'post_type' => $postType,
+    'order' => $order,
+    'post_status' => 'publish'
+  );
+  $posts_query = new WP_Query( $query_args );
+  if ($posts_query -> have_posts()) :
+      $cases_count = wp_count_posts('loja')->publish;
+?>
 
-<section class="stores-search branco-bg">
-    <div class="custom-container">
-        <div class="row">
-            <div class="col-12 col-lg-5 padding-top-medium padding-bottom-large">
-              <p>http://www.grupollal.dev.cc/wp-content/themes/llal-theme/acf-json/group_5c23f127678e3.json</p>
-              <ul id="listaLojas"></ul>
-            </div>
-        </div>
-    </div>
-    <div id="map"></div>
-</section>
+  <section class="stores-search branco-bg">
+      <div class="custom-container">
+          <div class="row">
+              <div class="col-12 col-md-5 padding-top-medium padding-bottom-large">
+                <div class="dropdown w-100 margin-bottom-xsmall" id="dropdownFranquias">
+                  <button class="btn lilas dropdown-toggle w-100 text-left" type="button" id="botaoFranquias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Escolha uma franquia
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="botaoFranquias">
+                    <a class="dropdown-item h5" href="#" data-franquia="todas" >Todas</a>
+                    <a class="dropdown-item h5" href="#" data-franquia="qdb" >Quem disse, Berenice?</a>
+                    <a class="dropdown-item h5" href="#" data-franquia="boticario" >O Boticário</a>
+                  </div>
+                </div>
+                <ul id="listaLojas">
+                  <?php $i = 1; while ($posts_query -> have_posts()) : $posts_query -> the_post(); ?>
+                    <li class="loja h5" id="loja_<?php echo $i ?>" data_franquia="<?php the_field('franquia'); ?>"><?php the_title(); ?></li>
+                    <?php $i++; endwhile; wp_reset_postdata(); ?>
+                </ul>
+              </div>
+          </div>
+      </div>
+      <div id="map"></div>
+  </section>
 
-<script type="text/javascript">
-  window.onload = function () {
-    mapboxgl.accessToken = 'pk.eyJ1IjoidnRybXJ4IiwiYSI6ImNpcDd2M3AxOTAxNnBzdmx5bWk4cTB4MjUifQ.pwa66A8LAj4Q-d8Fdg4k1Q';
-    var map = new mapboxgl.Map({
+  <?php
+    $teste = 'Taguatinga Shopping';
+  ?>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      mapboxgl.accessToken = 'pk.eyJ1IjoibGFib3VsYW5nZXJpZSIsImEiOiJjamZtcTVwMnUxM2JtMzBwbzhxaDE0MzRvIn0.IR-XQlIH_92_ZhqwsFwDhw';
+      const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/vtrmrx/cj26z1lh3000a2smwt3x0jlqw',
-        // zoom: 13,
-        // center: [4.899, 52.372]
-    });
-
-    var $data =
-    {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {
-            "Nome": "Taguatinga Shopping",
-            "Franquia": "boticario",
-            "Telefone": "61 3030 3030",
-            "Email": "mail@mail.com",
-            "Gerente": "Fulana de Tal",
-            "Link": "https://maps.google.com",
-            "icon": "marcador_quiosque"
-          },
-          "geometry": {
-            "coordinates": [
-              "-48.0459565",
-              "-15.8418531"
-            ],
-            "type": "Point"
-          },
-          "id": "1"
-        },
-        {
-          "type": "Feature",
-          "properties": {
-            "Nome": "Iguatemi",
-            "Franquia": "qdb",
-            "Telefone": "61 3030 3030",
-            "Email": "mail@mail.com",
-            "Gerente": "Fulana de Tal",
-            "Link": "https://maps.google.com",
-            "icon": "marcador_quiosque"
-          },
-          "geometry": {
-            "coordinates": [
-              "-47.8880087",
-              "-15.720366"
-            ],
-            "type": "Point"
-          },
-          "id": "2"
-        },
-        {
-          "type": "Feature",
-          "properties": {
-            "Nome": "Samdu Sul",
-            "Franquia": "qdb",
-            "Telefone": "61 3030 3030",
-            "Email": "mail@mail.com",
-            "Gerente": "Fulana de Tal",
-            "Link": "https://maps.google.com",
-            "icon": "marcador_quiosque"
-          },
-          "geometry": {
-            "coordinates": [
-              "-48.0501918",
-              "-15.8484685"
-            ],
-            "type": "Point"
-          },
-          "id": "3"
-        },
-      ]
-    }
-    map.on('load', function () {
-      var header_height = $('.page-header').outerHeight();
-      map.addLayer(
-        {
-          "id": "lojas_de_venda",
-          "type": "symbol",
-          "source": {
-              "type": "geojson",
-              "data": $data
-          },
-          "layout": {
-              "icon-image": "{icon}",
-              "icon-allow-overlap": true
-          }
-        }
-      );
-
-      map.on('click', 'lojas_de_venda', function (e) {
-        var popups = $('.mapboxgl-popup');
-        popups.remove();
-        var popupNome = '<h4>' + e.features[0].properties.Nome + '</h4>';
-        var popupTel = '<p class="text-small">telefone: ' + e.features[0].properties.Telefone + '</p>';
-        var popupEmail = '<p class="text-small">e-mail: ' + e.features[0].properties.Email + '</p>';
-        var popupGerente = '<p class="text-small">gerente: ' + e.features[0].properties.Gerente + '</p>';
-        var popupLink = '<a href="' + e.features[0].properties.Link + '" target="_blank">Rotas</a>';
-        new mapboxgl.Popup()
-          .setLngLat(e.features[0].geometry.coordinates)
-          .setHTML(popupNome + popupTel + popupEmail + popupGerente + popupLink )
-          .addTo(map);
-
-        map.flyTo({center: e.features[0].geometry.coordinates});
-
+        style: 'mapbox://styles/laboulangerie/cjrkwgeqh0qs32sob15q8sc1g',
+        center: [-47.938,-15.796],
+        zoom: 11
       });
 
-      map.on('mouseenter', 'lojas_de_venda', function () {
-          map.getCanvas().style.cursor = 'pointer';
-      });
+      var $data_qdb =
+      {
+        "type": "FeatureCollection",
+        "features": [
+          <?php $i = 1; while ($posts_query -> have_posts()) : $posts_query -> the_post(); if (get_field('franquia') == 'qdb') : ?>
+            {
+              "type": "Feature",
+              "properties": {
+                "Nome": "<?php the_title(); ?>",
+                "Franquia": "<?php the_field('franquia'); ?>",
+                "Telefone": "<?php the_field('telefone'); ?>",
+                "Email": "<?php the_field('email'); ?>",
+                "Gerente": "<?php the_field('gerente'); ?>",
+                "Link": "<?php the_field('link_mapa'); ?>",
+                "icon": "marcador_loja"
+              },
+              "geometry": {
+                "coordinates": [
+                  "<?php the_field('latitude'); ?>",
+                  "<?php the_field('longitude'); ?>"
+                ],
+                "type": "Point"
+              },
+              "id": "<?php echo $i; ?>"
+            },
+          <?php endif; $i++; endwhile; wp_reset_postdata(); ?>
+        ]
+      }
 
-      map.on('mouseleave', 'lojas_de_venda', function () {
-          map.getCanvas().style.cursor = '';
-      });
+      var $data_boticario =
+      {
+        "type": "FeatureCollection",
+        "features": [
+          <?php $i = 1; while ($posts_query -> have_posts()) : $posts_query -> the_post(); if (get_field('franquia') == 'boticario') : ?>
+            {
+              "type": "Feature",
+              "properties": {
+                "Nome": "<?php the_title(); ?>",
+                "Franquia": "<?php the_field('franquia'); ?>",
+                "Telefone": "<?php the_field('telefone'); ?>",
+                "Email": "<?php the_field('email'); ?>",
+                "Gerente": "<?php the_field('gerente'); ?>",
+                "Link": "<?php the_field('link_mapa'); ?>",
+                "icon": "marcador_loja"
+              },
+              "geometry": {
+                "coordinates": [
+                  "<?php the_field('latitude'); ?>",
+                  "<?php the_field('longitude'); ?>"
+                ],
+                "type": "Point"
+              },
+              "id": "<?php echo $i; ?>"
+            },
+          <?php endif; $i++; endwhile; wp_reset_postdata(); ?>
+        ]
+      }
 
-        var lojas = $data;
-        var container_lojas = $( "#listaLojas" );
+      var $data_todas =
+      {
+        "type": "FeatureCollection",
+        "features": [
+          <?php $i = 1; while ($posts_query -> have_posts()) : $posts_query -> the_post(); ?>
+            {
+              "type": "Feature",
+              "properties": {
+                "Nome": "<?php the_title(); ?>",
+                "Franquia": "<?php the_field('franquia'); ?>",
+                "Telefone": "<?php the_field('telefone'); ?>",
+                "Email": "<?php the_field('email'); ?>",
+                "Gerente": "<?php the_field('gerente'); ?>",
+                "Link": "<?php the_field('link_mapa'); ?>",
+                "icon": "marcador_loja"
+              },
+              "geometry": {
+                "coordinates": [
+                  "<?php the_field('latitude'); ?>",
+                  "<?php the_field('longitude'); ?>"
+                ],
+                "type": "Point"
+              },
+              "id": "<?php echo $i; ?>"
+            },
+          <?php $i++; endwhile; wp_reset_postdata(); ?>
+        ]
+      }
 
-        for( var feature in lojas.features ) {
-          var feature = lojas.features[feature];
-          if ( feature.id == null ) { var id = '' } else {
-            var id = feature.id;
-          }
-          if ( feature.properties.Nome == null ) { var nome = '' } else {
-            var nome = feature.properties.Nome;
-          }
+      var $current_filter =
+      {
+        "type": "FeatureCollection",
+        "features": []
+      }
 
-          container_lojas.append('<li class="loja h5" id="loja_' + id + '">' + nome + '</li>');
+      $current_filter.features = $data_todas.features;
 
-        }
-
-        $('.loja').click(function(){
-
-          $('html, body').animate({
-            scrollTop: $("#map").offset().top - header_height
-          }, 1000);
-
+      $("#dropdownFranquias .dropdown-item").click( function(event){
+        event.preventDefault();
+        map.flyTo({center: [-47.938,-15.796], zoom: 11});
+        if($(this).data('franquia') == "todas") {
+          $("#botaoFranquias").text("Escolha uma franquia");
           var popups = $('.mapboxgl-popup');
           popups.remove();
 
-          var id = $(this).attr('id').replace('loja_','');
+          $current_filter.features = $data_todas.features;
 
-          for (var i = 0; i < lojas.features.length; i++){
-            if ( lojas.features[i].properties.Telefone == null ) { var popupTel = '' } else {
-              var popupNome = '<h4>' + lojas.features[i].properties.Nome + '</h4>';
-              var popupTel = '<p class="text-small">telefone: ' + lojas.features[i].properties.Telefone + '</p>';
-              var popupEmail = '<p class="text-small">e-mail: ' + lojas.features[i].properties.Email + '</p>';
-              var popupGerente = '<p class="text-small">gerente: ' + lojas.features[i].properties.Gerente + '</p>';
-              var popupLink = '<a href="' + lojas.features[i].properties.Link + '" target="_blank">Rotas</a>';
+          var boundingBox = [[map.getBounds()._sw.lng, map.getBounds()._sw.lat], [map.getBounds()._ne.lng, map.getBounds()._ne.lat]];
+
+          map.setLayoutProperty('lojas_boticario', 'visibility', 'none');
+          map.setLayoutProperty('lojas_qdb', 'visibility', 'none');
+
+          map.setLayoutProperty('lojas_todas', 'visibility', 'visible');
+
+          $('#listaLojas .loja').removeClass('d-none');
+
+        } else {
+          $("#botaoFranquias").text($(this).text());
+          var popups = $('.mapboxgl-popup');
+          popups.remove();
+          if ($(this).data('franquia') == "qdb") {
+            $current_filter.features = $data_qdb.features;
+
+            map.setLayoutProperty('lojas_boticario', 'visibility', 'none');
+            map.setLayoutProperty('lojas_todas', 'visibility', 'none');
+
+            map.setLayoutProperty('lojas_qdb', 'visibility', 'visible');
+
+            $('#listaLojas .loja').addClass('d-none');
+            $('#listaLojas .loja[data_franquia=qdb]').removeClass('d-none');
+
+          } else if ($(this).data('franquia') == "boticario") {
+            $current_filter.features = $data_boticario.features;
+
+            map.setLayoutProperty('lojas_qdb', 'visibility', 'none');
+            map.setLayoutProperty('lojas_todas', 'visibility', 'none');
+
+            map.setLayoutProperty('lojas_boticario', 'visibility', 'visible');
+
+            $('#listaLojas .loja').addClass('d-none');
+            $('#listaLojas .loja[data_franquia=boticario]').removeClass('d-none');
+          }
+        }
+      });
+
+      map.on('load', function () {
+        var header_height = $('.page-header').outerHeight();
+        map.addLayer(
+          {
+            "id": "lojas_todas",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": $data_todas
+            },
+            "layout": {
+                "icon-image": "{icon}",
+                "icon-allow-overlap": true
             }
-            if (lojas.features[i].id == id){
-              map.flyTo({center: lojas.features[i].geometry.coordinates});
+          }
+        );
+        map.addLayer(
+          {
+            "id": "lojas_qdb",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": $data_qdb
+            },
+            "layout": {
+                "icon-image": "{icon}",
+                "icon-allow-overlap": true
+            }
+          }
+        );
+        map.addLayer(
+          {
+            "id": "lojas_boticario",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": $data_boticario
+            },
+            "layout": {
+                "icon-image": "{icon}",
+                "icon-allow-overlap": true
+            }
+          }
+        );
+
+        map.setLayoutProperty('lojas_boticario', 'visibility', 'none');
+        map.setLayoutProperty('lojas_qdb', 'visibility', 'none');
+
+        map.on('click', 'lojas_todas', function (e) {
+          var popups = $('.mapboxgl-popup');
+          popups.remove();
+          var popupNome = '<h4 class="margin-bottom-micro">' + e.features[0].properties.Nome + '</h4>';
+          var popupTel = '<p class="text-small">telefone: ' + e.features[0].properties.Telefone + '</p>';
+          var popupEmail = '<p class="text-small">e-mail: ' + e.features[0].properties.Email + '</p>';
+          var popupGerente = '<p class="text-small">gerente: ' + e.features[0].properties.Gerente + '</p>';
+          var popupLink = '<a class="link" href="' + e.features[0].properties.Link + '" target="_blank">Rotas</a>';
+          new mapboxgl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(popupNome + popupTel + popupEmail + popupGerente + popupLink )
+            .addTo(map);
+
+          map.flyTo({center: e.features[0].geometry.coordinates});
+
+        });
+
+        map.on('mouseenter', 'lojas_todas', function () {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'lojas_todas', function () {
+            map.getCanvas().style.cursor = '';
+        });
+
+        $('#listaLojas .loja').click(function(){
+          $('html, body').animate({
+            scrollTop: $("#map").offset().top - header_height
+          }, 1000);
+          var popups = $('.mapboxgl-popup');
+          popups.remove();
+          var id = $(this).attr('id').replace('loja_','');
+          for (var i = 0; i < $current_filter.features.length; i++){
+            if ( $current_filter.features[i].properties.Telefone == null ) { var popupTel = '' } else {
+              var popupNome = '<h4 class="margin-bottom-micro">' + $current_filter.features[i].properties.Nome + '</h4>';
+              var popupTel = '<p class="text-small">telefone: ' + $current_filter.features[i].properties.Telefone + '</p>';
+              var popupEmail = '<p class="text-small">e-mail: ' + $current_filter.features[i].properties.Email + '</p>';
+              var popupGerente = '<p class="text-small">gerente: ' + $current_filter.features[i].properties.Gerente + '</p>';
+              var popupLink = '<a class="link" href="' + $current_filter.features[i].properties.Link + '" target="_blank">Rotas</a>';
+            }
+            if ($current_filter.features[i].id == id){
+              map.flyTo({center: $current_filter.features[i].geometry.coordinates});
               new mapboxgl.Popup()
-                .setLngLat(lojas.features[i].geometry.coordinates)
+                .setLngLat($current_filter.features[i].geometry.coordinates)
                 .setHTML(popupNome + popupTel + popupEmail + popupGerente + popupLink )
                 .addTo(map);
             }
           }
         });
 
-    });
-  }
-</script>
+      });
+    }
+  </script>
+
+<?php endif; ?>
