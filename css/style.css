@@ -6344,7 +6344,7 @@ address {
       width: 60%; } }
   .timeline #navTimeline {
     position: absolute;
-    top: 6rem;
+    top: 6.5rem;
     width: 100%;
     z-index: 2; }
     @media (min-width: 768px) {
@@ -6365,10 +6365,15 @@ address {
       .timeline #navTimeline .prev .text, .timeline #navTimeline .next .text {
         display: inline-block; }
       .timeline #navTimeline .prev .arrow, .timeline #navTimeline .next .arrow {
-        font-size: 2rem;
+        font-size: 2.5rem;
         display: inline-block;
         vertical-align: bottom;
-        transition: transform .15s ease; }
+        transition: transform .15s ease;
+        font-weight: 600; }
+        @media (min-width: 768px) {
+          .timeline #navTimeline .prev .arrow, .timeline #navTimeline .next .arrow {
+            font-size: 2rem;
+            font-weight: 300; } }
     .timeline #navTimeline .prev:hover .arrow {
       transform: translateX(-0.25rem); }
     .timeline #navTimeline .prev .arrow {
