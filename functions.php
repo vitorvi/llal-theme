@@ -131,22 +131,28 @@ function your_theme_new_customizer_settings($wp_customize) {
 add_action('customize_register', 'your_theme_new_customizer_settings');
 
 function llal_scripts() {
-    wp_enqueue_style('owl', get_template_directory_uri() . '/css/owl.carousel.min.css');
-    wp_enqueue_style('owl_theme', get_template_directory_uri() . '/css/owl.theme.default.min.css');
 	  wp_enqueue_style('asap', 'https://fonts.googleapis.com/css?family=Asap:400,400i,500,500i,700,700i');
     wp_enqueue_style('urbana', 'https://use.typekit.net/rtc5csn.css');
   	wp_enqueue_style('theme_style', get_template_directory_uri() . '/css/style.css');
   	wp_enqueue_style('fontawesome', get_template_directory_uri() . '/css/fontawesome.css');
-    wp_enqueue_style('mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css');
   	wp_deregister_script('jquery');
   	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery.min.js', array(), $ver = false, false );
   	wp_enqueue_script( 'popper', get_template_directory_uri() . '/js/popper.min.js', array(), $ver = false, false );
   	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.js', array('jquery', 'popper'), $ver = false, false );
-  	wp_enqueue_script( 'owl', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), $ver = false, false );
-    wp_enqueue_script( 'mapbox-gl','https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js', array(), $ver = false, false );
-  	wp_enqueue_script( 'loadmore', get_template_directory_uri().'/js/loadmore.js', array( 'jquery'  ) );
-    wp_localize_script( 'loadmore', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')) );
-    wp_localize_script('my-ajax-handle', 'the_ajax_script', array('ajax_url' => admin_url('admin-ajax.php')));
+    if ( ! is_page_template( 'single.php' ) ) {
+      wp_enqueue_style('owl', get_template_directory_uri() . '/css/owl.carousel.min.css');
+      wp_enqueue_style('owl_theme', get_template_directory_uri() . '/css/owl.theme.default.min.css');
+      wp_enqueue_script( 'owl', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), $ver = false, false );
+    }
+    if ( is_page_template( 'archive.php' ) ) {
+      wp_enqueue_script( 'loadmore', get_template_directory_uri().'/js/loadmore.js', array( 'jquery'  ) );
+      wp_localize_script( 'loadmore', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')) );
+      wp_localize_script('my-ajax-handle', 'the_ajax_script', array('ajax_url' => admin_url('admin-ajax.php')));
+    }
+    if ( is_page_template( 'page-lojas.php' ) ) {
+      wp_enqueue_style('mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css');
+      wp_enqueue_script( 'mapbox-gl','https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js', array(), $ver = false, false );
+    }
 	  wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'bootstrap'), $ver = false, true );
 }
 
