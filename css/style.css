@@ -5754,7 +5754,7 @@ address {
     width: calc(100% - 1rem); } }
 @media (max-width: 767.98px) {
   .brand .owl-carousel.content .imagem {
-    margin-top: 66.6666vw; } }
+    margin-top: 50vw; } }
 .brand .owl-carousel.content .descricao {
   color: #FFFFFF; }
   @media (min-width: 768px) {
@@ -6238,10 +6238,20 @@ address {
         position: absolute;
         top: 1rem;
         right: 1rem;
-        color: #AC4FC6; }
+        color: #AC4FC6;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position-x: right;
+        background-position-y: top;
+        padding-right: 1.75rem;
+        text-align: right;
+        background-image: url("data:image/svg+xml,%3Csvg width='59' height='59' viewBox='0 0 59 59' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)'%3E%3Crect x='29.5' y='1.41421' width='39.7193' height='39.7193' rx='3' transform='rotate(45 29.5 1.41421)' stroke='%23AC4FC6' stroke-width='2'/%3E%3Cpath d='M17.0703 37.2336C17.0703 37.7859 17.518 38.2336 18.0703 38.2336C18.6226 38.2336 19.0703 37.7859 19.0703 37.2336H17.0703ZM43.5483 27.5997C43.9388 27.2092 43.9388 26.576 43.5483 26.1855L37.1843 19.8215C36.7938 19.431 36.1606 19.431 35.7701 19.8215C35.3796 20.212 35.3796 20.8452 35.7701 21.2357L41.4269 26.8926L35.7701 32.5494C35.3796 32.94 35.3796 33.5731 35.7701 33.9636C36.1606 34.3542 36.7938 34.3542 37.1843 33.9636L43.5483 27.5997ZM19.0703 37.2336V30.8926H17.0703V37.2336H19.0703ZM22.0703 27.8926H42.8411V25.8926H22.0703V27.8926ZM19.0703 30.8926C19.0703 29.2357 20.4135 27.8926 22.0703 27.8926V25.8926C19.3089 25.8926 17.0703 28.1312 17.0703 30.8926H19.0703Z' fill='%23AC4FC6'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect width='59' height='59' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E"); }
         @media (min-width: 768px) {
           .stores-search .mapboxgl-popup .mapboxgl-popup-content .link {
-            padding-top: 2.5rem; } }
+            text-align: center;
+            padding-top: 2.5rem;
+            padding-right: 0;
+            background-position-x: center; } }
       .stores-search .mapboxgl-popup .mapboxgl-popup-content p {
         margin-top: 0;
         margin-bottom: 0; }

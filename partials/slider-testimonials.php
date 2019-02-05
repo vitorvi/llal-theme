@@ -51,7 +51,7 @@
                                     <p class="autor branco"><strong><?php the_title(); ?></strong></p>
                                     <p class="cargo branco"><?php the_field('cargo'); ?></p>
                                 </div>
-                                <div class="testimonial-info col-12 col-lg-6 offset-lg-1">
+                                <div class="testimonial-info col-12 col-lg-6 offset-lg-1 d-flex flex-column justify-content-center">
                                     <p class="text-large branco"><?php the_field('texto') ?></p>
                                     <p class="meta branco d-none d-lg-block text-large"><strong class="autor"><?php the_title(); ?>, </strong><span class="cargo"><?php the_field('cargo'); ?></span></p>
                                 </div>

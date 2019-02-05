@@ -46,7 +46,7 @@
                                     <h2 class="h1 marrom text-center text-md-right margin-bottom-small margin-top-small"><?php the_sub_field('titulo') ?>&nbsp;</h2>
                                 </div>
                                 <div class="col-12 col-md-4 offset-md-3">
-                                    <div class="imagem margin-bottom-small padding-top-small">
+                                    <div class="imagem margin-bottom-small padding-top-xsmall">
                                         <div class="row subrow">
                                             <div class="d-none d-md-flex col-12">
                                                 <?php echo wp_get_attachment_image(get_sub_field('imagem'), 'large'); ?>
