@@ -19,7 +19,7 @@
 
 		<main class="page home">
 			<?php
-			    get_template_part( 'partials/slider', 'archive-full' );
+			  get_template_part( 'partials/slider', 'archive-full' );
 				get_template_part( 'partials/slider', 'testimonials' );
 				get_template_part( 'partials/join-us' );
 				get_template_part( 'partials/slider', 'archive' );

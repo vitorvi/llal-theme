@@ -16,7 +16,7 @@
 
     </style>
 
-    <section class="slider brand branco-bg position-relative full-height">
+    <section class="slider brand branco-bg position-relative">
 
             <div class="owl-carousel owl-theme bg turquesa-bg">
                 <?php while ( have_rows('capa') ) : the_row(); ?>
@@ -56,7 +56,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-large descricao text-center text-md-left margin-bottom-large"><?php the_sub_field('descricao') ?></p>
+                                    <p class="text-large descricao text-center text-md-left"><?php the_sub_field('descricao') ?></p>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
             nav: false,
             mouseDrag: false,
             touchDrag: false,
-            pullDrag: false,
+            pullDrag: true,
             items: 1
         });
 
@@ -86,7 +86,7 @@
             nav: false,
             mouseDrag: false,
             touchDrag: false,
-            pullDrag: false,
+            pullDrag: true,
             items: 1,
             responsive : {
                 0 : {
@@ -102,12 +102,20 @@
         owl_brand_content.owlCarousel({
             loop: false,
             dots: true,
-            nav: false,
             mouseDrag: false,
-            touchDrag: false,
-            pullDrag: false,
+            pullDrag: true,
             items: 1,
-            animateOut: 'fadeOut'
+            animateOut: 'fadeOut',
+            responsive : {
+                0 : {
+                    nav: false,
+                    touchDrag: true
+                },
+                768 : {
+                    nav: true,
+                    touchDrag: false
+                }
+            }
         });
 
         owl_brand_content.on('change.owl.carousel', function(event) {

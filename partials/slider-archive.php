@@ -58,7 +58,7 @@
                         ?>
                     </div>
 
-                    <a class="btn button-large margin-top-medium">Mais notícias</a>
+                    <a class="btn button-large margin-top-medium" href="<?php echo get_site_url(); ?>/noticias">Mais notícias</a>
                 </div>
             </div>
         </div>
