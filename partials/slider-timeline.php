@@ -40,7 +40,7 @@
             <div id="navTimeline">
                 <div class="custom-container">
                     <div class="row">
-                        <div class="col-8 offset-2 col-md-5 offset-md-0 col-lg-4 padding-bottom-large">
+                        <div class="col-10 offset-1 col-md-5 offset-md-0 col-lg-4 padding-bottom-large">
                             <div class="d-flex d-row justify-content-between">
                                 <button class="prev button-large turquesa disabled"><span class="arrow">‹</span><span class="text d-none d-md-inline-block"></span></button>
                                 <button class="next button-large turquesa"><span class="text d-none d-md-inline-block"></span><span class="arrow">›</span></button>
