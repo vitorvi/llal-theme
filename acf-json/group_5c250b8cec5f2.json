@@ -78,7 +78,7 @@
             "placeholder": "",
             "maxlength": "",
             "rows": "",
-            "new_lines": "wpautop"
+            "new_lines": "br"
         }
     ],
     "location": [
@@ -113,5 +113,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1548357734
+    "modified": 1549392231
 }

@@ -26,7 +26,7 @@
 				<div class="row">
 					<div class="col-12 col-lg-8 offset-lg-2">
 						<h1 class="text-center margin-bottom-xsmall"><?php the_field('titulo') ?></h1>
-						<p><?php the_field('intro') ?></p>
+						<p class="text-center"><?php the_field('intro') ?></p>
 					</div>
 				</div>
 			</div>
