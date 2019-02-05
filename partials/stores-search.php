@@ -26,7 +26,7 @@
           <div class="row">
               <div class="col-12 col-md-5 padding-top-medium padding-bottom-large">
                 <div class="dropdown w-100 margin-bottom-xsmall" id="dropdownFranquias">
-                  <button class="btn lilas dropdown-toggle w-100 text-left" type="button" id="botaoFranquias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="button-large lilas dropdown-toggle w-100 text-left" type="button" id="botaoFranquias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Escolha uma franquia
                   </button>
                   <div class="dropdown-menu" aria-labelledby="botaoFranquias">

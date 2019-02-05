@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-12">
               <div class="text-center">
-                  <a id="more_posts" class="button-large margin-top-small cinza-3 loadmore <?php if ($i <= $posts_count): ?>d-inline-block<?php else: ?>d-none<?php endif; ?>" data-order="<?php echo $order; ?>" data-post-type="<?php echo $postType; ?>" data-ppp="<?php echo $postsPerPage; ?>" data-offset="<?php echo $postsPerPage; ?>">Ver mais</a>
+                  <a id="more_posts" class="btn button-large margin-top-small cinza-3 loadmore <?php if ($i <= $posts_count): ?>d-inline-block<?php else: ?>d-none<?php endif; ?>" data-order="<?php echo $order; ?>" data-post-type="<?php echo $postType; ?>" data-ppp="<?php echo $postsPerPage; ?>" data-offset="<?php echo $postsPerPage; ?>">Ver mais</a>
               </div>
             </div>
         </div>

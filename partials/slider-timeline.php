@@ -13,7 +13,7 @@
                 <div class="custom-container">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="h4 padding-top-medium text-center text-md-left">Nossa história</h2>
+                            <h2 class="h3 padding-top-large text-center text-md-left">Nossa história</h2>
                         </div>
                     </div>
                 </div>
@@ -26,9 +26,9 @@
                         <div class="item">
                             <div class="custom-container padding-top-xlarge padding-bottom-large">
                                 <div class="row">
-                                    <div class="col-12 col-lg-4">
-                                        <h3 class="ano margin-top-xsmall text-center text-md-left turquesa"><?php the_sub_field('titulo'); ?></h2>
-                                        <p class="texto margin-top-xsmall text-center text-lg-left"><?php the_sub_field('texto'); ?></p>
+                                    <div class="col-12 col-md-5 col-lg-4">
+                                        <h3 class="ano margin-top-medium text-center text-md-left turquesa"><?php the_sub_field('titulo'); ?></h2>
+                                        <p class="texto margin-top-xsmall text-center text-md-left"><?php the_sub_field('texto'); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -40,10 +40,10 @@
             <div id="navTimeline">
                 <div class="custom-container">
                     <div class="row">
-                        <div class="col-12 col-lg-4 padding-bottom-large">
+                        <div class="col-12 col-md-5 col-lg-4 padding-bottom-large">
                             <div class="d-flex d-row justify-content-between">
-                                <button class="prev button-large turquesa disabled"></button>
-                                <button class="next button-large turquesa"></button>
+                                <button class="prev button-large turquesa disabled"><span class="arrow">‹</span><span class="text d-none d-md-inline-block"></span></button>
+                                <button class="next button-large turquesa"><span class="text d-none d-md-inline-block"></span><span class="arrow">›</span></button>
                             </div>
                         </div>
                     </div>
@@ -70,23 +70,23 @@
             var currentIndex = 0;
             var nextIndex = currentIndex + 1;
             var nextYear = $($('.owl-item .ano')[nextIndex]).text();
-            $('#navTimeline .prev').addClass('disabled').text($($('.owl-item .ano')[currentIndex - 1]).text());;
-            $('#navTimeline .next').removeClass('disabled').text($($('.owl-item .ano')[nextIndex]).text());
+            $('#navTimeline .prev').addClass('disabled').find('.text').text($($('.owl-item .ano')[currentIndex - 1]).text());;
+            $('#navTimeline .next').removeClass('disabled').find('.text').text($($('.owl-item .ano')[nextIndex]).text());
 
             owl_timeline.on('changed.owl.carousel', function (e) {
               currentIndex = e.item.index;
               nextIndex = currentIndex + 1;
-              $('#navTimeline .prev').text($($('.owl-item .ano')[currentIndex - 1]).text());
-              $('#navTimeline .next').text($($('.owl-item .ano')[nextIndex]).text());
+              $('#navTimeline .prev').find('.text').text($($('.owl-item .ano')[currentIndex - 1]).text());
+              $('#navTimeline .next').find('.text').text($($('.owl-item .ano')[nextIndex]).text());
               if(currentIndex == 0) {
                   $('#navTimeline .prev').addClass('disabled');
               } else {
-                  $('#navTimeline .prev').removeClass('disabled').text($($('.owl-item .ano')[currentIndex - 1]).text());
+                  $('#navTimeline .prev').removeClass('disabled').find('.text').text($($('.owl-item .ano')[currentIndex - 1]).text());
               }
               if(nextIndex >= owlSize) {
                   $('#navTimeline .next').addClass('disabled');
               } else {
-                  $('#navTimeline .next').removeClass('disabled').text($($('.owl-item .ano')[nextIndex]).text());
+                  $('#navTimeline .next').removeClass('disabled').find('.text').text($($('.owl-item .ano')[nextIndex]).text());
               }
               nextYear = $($('.owl-item .ano')[nextIndex]).text();
             });

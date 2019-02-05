@@ -1,6 +1,4 @@
 function displayPost(response, postType) {
-  console.log(postType);
-  console.log(response);
 
   if (postType == 'post') {
       $("#ajaxContainer").append($('<a class="col-12 col-md-2 col-lg-4">').attr('href', response.permalink)
@@ -33,7 +31,6 @@ jQuery(function($){
          var $post_type = $(this).attr('data-post-type');
          var $ppp = $(this).attr('data-ppp');
          var $order = $(this).attr('data-order');
-         console.log($post_type);
         $.ajax({
             method: 'POST',
             url: ajax_object.ajax_url,
@@ -62,7 +59,6 @@ jQuery(function($){
     })
 
     $('.filter_posts').on('click', function(e){
-        console.log("filter post type!")
         e.preventDefault();
         var $offset = 0;
         var $ppp = $('#more_posts').attr('data-ppp');
@@ -106,14 +102,12 @@ jQuery(function($){
     });
 
     $('.order_button').on('click', function(e){
-        console.log("order posts!")
         e.preventDefault();
         var $offset = 0;
         var $order = $(this).attr('data-order');
         var $ppp = $('#more_posts').attr('data-ppp');
         var $category = $('#more_posts').attr('data-category');
         var $post_type = $('#more_posts').attr('data-post-type');
-        console.log($ppp + ' ; ' + $category + ' ; ' + $post_type);
         $.ajax({
             method: 'POST',
             url: ajax_object.ajax_url,
@@ -127,7 +121,8 @@ jQuery(function($){
                 action: 'order_posts'
             },
             success:function(response){
-                console.log($category);
+                $('.order_button').removeClass('active');
+                $(e.target).addClass('active');
 
                 $("#more_posts").attr('data-category', $category).removeClass('d-none').addClass('d-inline-block');
 

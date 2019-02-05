@@ -33,12 +33,11 @@
         <div class="post-content">
             <div class="custom-container">
                 <div class="row padding-top-medium">
-                    <div class="col-12 margin-bottom-small text-center">
-                        <!-- <a href="javascript:history.back()">Voltar</a> -->
+                    <div class="col-12 margin-bottom-small text-left text-md-center">
                         <span class="tag <?php echo $color ?>"><?php echo $area_name; ?></span>
                     </div>
                     <div class="col-12 col-lg-10 offset-lg-1">
-                        <h1 class="text-center"><?php the_title(); ?></h1>
+                        <h1 class="text-left text-md-center"><?php the_title(); ?></h1>
                     </div>
                     <div class="col-12 col-xl-10 offset-xl-1 margin-top-medium">
                         <?php echo wp_get_attachment_image(get_post_thumbnail_id(), 'large', '', array('class' => 'w-100 h-auto')); ?>

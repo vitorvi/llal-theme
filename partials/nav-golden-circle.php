@@ -18,7 +18,7 @@
   </div>
   <div class="custom-container">
     <div class="row padding-top-large">
-      <div class="col-10 offset-1 offset-lg-0 col-lg-5">
+      <div class="col-10 col-md-5 offset-1 offset-md-0">
           <div class="nav w-100" id="theCircle">
               <div id="oqueIlustra" href="#oque" data-toggle="tab" role="tab" aria-controls="oque" aria-selected="true" class="nav-link active"></div>
               <div id="comoIlustra" href="#como" data-toggle="tab" role="tab" aria-controls="como" aria-selected="false" class="nav-link"></div>
@@ -31,7 +31,7 @@
               </div>
           </div>
       </div>
-      <div class="col-12 offset-lg-1 col-lg-6 margin-top-medium">
+      <div class="col-12 col-md-6 offset-md-1 col-lg-6 margin-top-medium">
         <ul class="nav nav-tabs margin-bottom-small padding-bottom-small d-flex flex-row justify-content-between flex-nowrap" id="goldenCircleTabs" role="tablist">
           <li class="nav-item text-left w-100">
             <a class="nav-link button-large active" id="oque-tab" data-toggle="tab" href="#oque" role="tab" aria-controls="oque" aria-selected="true">O quê</a>
