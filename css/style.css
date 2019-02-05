@@ -5758,6 +5758,9 @@ address {
             width: 100vw;
             transform: translateX(calc(80vh + 60px)) rotate(90deg); } }
   @media (max-width: 767.98px) {
+    .brand .owl-carousel.content .item {
+      margin-bottom: 5rem; } }
+  @media (max-width: 767.98px) {
     .brand .owl-carousel.content h2 {
       position: absolute;
       top: 0;
