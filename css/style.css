@@ -6472,8 +6472,26 @@ main.page.single img, .mce-content-body img {
   height: auto; }
   main.page.single img.size-full, .mce-content-body img.size-full {
     width: 100%; }
-main.page.single p + figure, main.page.single p + .mceTemp dl.wp-caption, main.page.single p > img, main.page.single .text-medium + figure, main.page.single .text-medium + .mceTemp dl.wp-caption, main.page.single .text-medium > img, main.page.single figure + figure, main.page.single figure + .mceTemp dl.wp-caption, main.page.single figure > img, .mce-content-body p + figure, .mce-content-body p + .mceTemp dl.wp-caption, .mce-content-body p > img, .mce-content-body .text-medium + figure, .mce-content-body .text-medium + .mceTemp dl.wp-caption, .mce-content-body .text-medium > img, .mce-content-body figure + figure, .mce-content-body figure + .mceTemp dl.wp-caption, .mce-content-body figure > img {
+main.page.single p + figure, main.page.single .text-medium + figure, main.page.single figure + figure, .mce-content-body p + figure, .mce-content-body .text-medium + figure, .mce-content-body figure + figure {
   margin-top: 2rem; }
+  main.page.single p + figure figcaption, main.page.single .text-medium + figure figcaption, main.page.single figure + figure figcaption, .mce-content-body p + figure figcaption, .mce-content-body .text-medium + figure figcaption, .mce-content-body figure + figure figcaption {
+    margin-bottom: 1rem; }
+  main.page.single p + figure:last-child figcaption, main.page.single .text-medium + figure:last-child figcaption, main.page.single figure + figure:last-child figcaption, .mce-content-body p + figure:last-child figcaption, .mce-content-body .text-medium + figure:last-child figcaption, .mce-content-body figure + figure:last-child figcaption {
+    margin-bottom: 0; }
+main.page.single p + p img, main.page.single .text-medium + p img, main.page.single figure + p img, .mce-content-body p + p img, .mce-content-body .text-medium + p img, .mce-content-body figure + p img {
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
+main.page.single p + .mceTemp dl.wp-caption, main.page.single .text-medium + .mceTemp dl.wp-caption, main.page.single figure + .mceTemp dl.wp-caption, .mce-content-body p + .mceTemp dl.wp-caption, .mce-content-body .text-medium + .mceTemp dl.wp-caption, .mce-content-body figure + .mceTemp dl.wp-caption {
+  margin-top: 2rem; }
+main.page.single p > img, .mce-content-body p > img {
+  margin-top: 1.5rem; }
+  @media (min-width: 1025px) {
+    main.page.single p > img, .mce-content-body p > img {
+      margin-top: 1rem; }
+      main.page.single p > img.alignleft, .mce-content-body p > img.alignleft {
+        margin-top: 2rem; }
+      main.page.single p > img.alignright, .mce-content-body p > img.alignright {
+        margin-top: 2rem; } }
 main.page.single figure, main.page.single dl.wp-caption, main.page.single p > img, .mce-content-body figure, .mce-content-body dl.wp-caption, .mce-content-body p > img {
   margin-bottom: 1rem; }
   main.page.single figure.alignleft, main.page.single dl.wp-caption.alignleft, main.page.single p > img.alignleft, .mce-content-body figure.alignleft, .mce-content-body dl.wp-caption.alignleft, .mce-content-body p > img.alignleft {
