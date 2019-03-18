@@ -597,7 +597,7 @@ blockquote, blockquote p {
       line-height: 2rem;
       font-style: italic; } }
 
-.text-small, figcaption, input, textarea {
+.text-small, figcaption, dd, input, textarea {
   font-family: "Asap", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
   margin-bottom: .5rem;
@@ -608,21 +608,24 @@ blockquote, blockquote p {
   font-style: normal;
   color: rgba(0, 0, 0, 0.7); }
   @media (min-width: 1025px) {
-    .text-small, figcaption, input, textarea {
+    .text-small, figcaption, dd, input, textarea {
       font-size: 16px;
       line-height: 1rem;
       font-style: normal; } }
-  .text-small strong, figcaption strong, input strong, textarea strong {
+  .text-small strong, figcaption strong, dd strong, input strong, textarea strong {
     font-weight: 700; }
+
+figcaption, dd {
+  margin-bottom: 0; }
 
 h1 strong, .h1 strong {
   font-weight: 800; }
 
-p strong, .text-medium strong {
+p strong, .text-medium strong, figure strong {
   font-weight: 700; }
-p + p, .text-medium + p {
+p + p, .text-medium + p, figure + p {
   margin-top: 1rem; }
-p + .text-medium, .text-medium + .text-medium {
+p + .text-medium, .text-medium + .text-medium, figure + .text-medium {
   margin-top: 1rem; }
 
 .button-large {
@@ -2303,6 +2306,47 @@ input[type="button"].btn-block {
   @media screen and (prefers-reduced-motion: reduce) {
     .collapsing {
       transition: none; } }
+
+main.page {
+  padding-top: 3.5rem; }
+  @media (min-width: 1025px) {
+    main.page {
+      padding-top: 4.5rem; } }
+
+main.page.single blockquote, main.page.single blockquote p, .mce-content-body blockquote, .mce-content-body blockquote p {
+  color: #683431;
+  font-style: italic; }
+main.page.single blockquote + p, .mce-content-body blockquote + p {
+  margin-top: 1rem; }
+  @media (min-width: 1025px) {
+    main.page.single blockquote + p, .mce-content-body blockquote + p {
+      margin-top: 2.5rem; } }
+main.page.single img, .mce-content-body img {
+  max-width: 100%;
+  height: auto; }
+  main.page.single img.size-full, .mce-content-body img.size-full {
+    width: 100%; }
+main.page.single p + figure, main.page.single p + .mceTemp dl.wp-caption, main.page.single .text-medium + figure, main.page.single .text-medium + .mceTemp dl.wp-caption, main.page.single figure + figure, main.page.single figure + .mceTemp dl.wp-caption, .mce-content-body p + figure, .mce-content-body p + .mceTemp dl.wp-caption, .mce-content-body .text-medium + figure, .mce-content-body .text-medium + .mceTemp dl.wp-caption, .mce-content-body figure + figure, .mce-content-body figure + .mceTemp dl.wp-caption {
+  margin-top: 2rem; }
+main.page.single figure, main.page.single dl.wp-caption, .mce-content-body figure, .mce-content-body dl.wp-caption {
+  margin-bottom: 1rem; }
+  main.page.single figure.alignleft, main.page.single dl.wp-caption.alignleft, .mce-content-body figure.alignleft, .mce-content-body dl.wp-caption.alignleft {
+    margin-right: 2rem; }
+  main.page.single figure.alignright, main.page.single dl.wp-caption.alignright, .mce-content-body figure.alignright, .mce-content-body dl.wp-caption.alignright {
+    margin-left: 2rem; }
+  main.page.single figure .wp-caption-dt img, main.page.single dl.wp-caption .wp-caption-dt img, .mce-content-body figure .wp-caption-dt img, .mce-content-body dl.wp-caption .wp-caption-dt img {
+    display: block; }
+  main.page.single figure .wp-caption-dt + .wp-caption-dd, main.page.single dl.wp-caption .wp-caption-dt + .wp-caption-dd, .mce-content-body figure .wp-caption-dt + .wp-caption-dd, .mce-content-body dl.wp-caption .wp-caption-dt + .wp-caption-dd {
+    margin-top: 1rem; }
+main.page.single .wp-caption, main.page.single .wp-caption-dd, .mce-content-body .wp-caption, .mce-content-body .wp-caption-dd {
+  background: none;
+  border: none;
+  max-width: 100%;
+  padding: 0;
+  text-align: center; }
+  main.page.single .wp-caption figcaption, main.page.single .wp-caption-dd figcaption, .mce-content-body .wp-caption figcaption, .mce-content-body .wp-caption-dd figcaption {
+    margin-top: .5rem;
+    font-style: italic; }
 
 #tinymce {
   padding-top: 1rem !important; }
