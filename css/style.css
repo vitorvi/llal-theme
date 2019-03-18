@@ -6461,17 +6461,17 @@ main.page.single img, .mce-content-body img {
   height: auto; }
   main.page.single img.size-full, .mce-content-body img.size-full {
     width: 100%; }
-main.page.single p + figure, main.page.single p + .mceTemp dl.wp-caption, main.page.single .text-medium + figure, main.page.single .text-medium + .mceTemp dl.wp-caption, main.page.single figure + figure, main.page.single figure + .mceTemp dl.wp-caption, .mce-content-body p + figure, .mce-content-body p + .mceTemp dl.wp-caption, .mce-content-body .text-medium + figure, .mce-content-body .text-medium + .mceTemp dl.wp-caption, .mce-content-body figure + figure, .mce-content-body figure + .mceTemp dl.wp-caption {
+main.page.single p + figure, main.page.single p + .mceTemp dl.wp-caption, main.page.single p > img, main.page.single .text-medium + figure, main.page.single .text-medium + .mceTemp dl.wp-caption, main.page.single .text-medium > img, main.page.single figure + figure, main.page.single figure + .mceTemp dl.wp-caption, main.page.single figure > img, .mce-content-body p + figure, .mce-content-body p + .mceTemp dl.wp-caption, .mce-content-body p > img, .mce-content-body .text-medium + figure, .mce-content-body .text-medium + .mceTemp dl.wp-caption, .mce-content-body .text-medium > img, .mce-content-body figure + figure, .mce-content-body figure + .mceTemp dl.wp-caption, .mce-content-body figure > img {
   margin-top: 2rem; }
-main.page.single figure, main.page.single dl.wp-caption, .mce-content-body figure, .mce-content-body dl.wp-caption {
+main.page.single figure, main.page.single dl.wp-caption, main.page.single p > img, .mce-content-body figure, .mce-content-body dl.wp-caption, .mce-content-body p > img {
   margin-bottom: 1rem; }
-  main.page.single figure.alignleft, main.page.single dl.wp-caption.alignleft, .mce-content-body figure.alignleft, .mce-content-body dl.wp-caption.alignleft {
+  main.page.single figure.alignleft, main.page.single dl.wp-caption.alignleft, main.page.single p > img.alignleft, .mce-content-body figure.alignleft, .mce-content-body dl.wp-caption.alignleft, .mce-content-body p > img.alignleft {
     margin-right: 2rem; }
-  main.page.single figure.alignright, main.page.single dl.wp-caption.alignright, .mce-content-body figure.alignright, .mce-content-body dl.wp-caption.alignright {
+  main.page.single figure.alignright, main.page.single dl.wp-caption.alignright, main.page.single p > img.alignright, .mce-content-body figure.alignright, .mce-content-body dl.wp-caption.alignright, .mce-content-body p > img.alignright {
     margin-left: 2rem; }
-  main.page.single figure .wp-caption-dt img, main.page.single dl.wp-caption .wp-caption-dt img, .mce-content-body figure .wp-caption-dt img, .mce-content-body dl.wp-caption .wp-caption-dt img {
+  main.page.single figure .wp-caption-dt img, main.page.single dl.wp-caption .wp-caption-dt img, main.page.single p > img .wp-caption-dt img, .mce-content-body figure .wp-caption-dt img, .mce-content-body dl.wp-caption .wp-caption-dt img, .mce-content-body p > img .wp-caption-dt img {
     display: block; }
-  main.page.single figure .wp-caption-dt + .wp-caption-dd, main.page.single dl.wp-caption .wp-caption-dt + .wp-caption-dd, .mce-content-body figure .wp-caption-dt + .wp-caption-dd, .mce-content-body dl.wp-caption .wp-caption-dt + .wp-caption-dd {
+  main.page.single figure .wp-caption-dt + .wp-caption-dd, main.page.single dl.wp-caption .wp-caption-dt + .wp-caption-dd, main.page.single p > img .wp-caption-dt + .wp-caption-dd, .mce-content-body figure .wp-caption-dt + .wp-caption-dd, .mce-content-body dl.wp-caption .wp-caption-dt + .wp-caption-dd, .mce-content-body p > img .wp-caption-dt + .wp-caption-dd {
     margin-top: 1rem; }
 main.page.single .wp-caption, main.page.single .wp-caption-dd, .mce-content-body .wp-caption, .mce-content-body .wp-caption-dd {
   background: none;
