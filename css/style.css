@@ -6120,6 +6120,17 @@ address {
   #orderPosts a:last-child {
     border: none; }
 
+.post-thumb figure {
+  position: relative;
+  padding-top: 50%;
+  overflow: hidden; }
+  .post-thumb figure img {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    object-fit: cover; }
 .post-thumb .tag {
   margin-right: .5rem;
   transform: translateY(-10%); }
