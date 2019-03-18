@@ -6475,7 +6475,7 @@ main.page.single img, .mce-content-body img {
 main.page.single p + figure, main.page.single .text-medium + figure, main.page.single figure + figure, .mce-content-body p + figure, .mce-content-body .text-medium + figure, .mce-content-body figure + figure {
   margin-top: 2rem; }
   main.page.single p + figure figcaption, main.page.single .text-medium + figure figcaption, main.page.single figure + figure figcaption, .mce-content-body p + figure figcaption, .mce-content-body .text-medium + figure figcaption, .mce-content-body figure + figure figcaption {
-    margin-bottom: 1rem; }
+    margin-bottom: 2rem; }
   main.page.single p + figure:last-child figcaption, main.page.single .text-medium + figure:last-child figcaption, main.page.single figure + figure:last-child figcaption, .mce-content-body p + figure:last-child figcaption, .mce-content-body .text-medium + figure:last-child figcaption, .mce-content-body figure + figure:last-child figcaption {
     margin-bottom: 0; }
 main.page.single p + p img, main.page.single .text-medium + p img, main.page.single figure + p img, .mce-content-body p + p img, .mce-content-body .text-medium + p img, .mce-content-body figure + p img {
