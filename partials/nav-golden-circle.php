@@ -47,16 +47,31 @@
         </ul>
         <div class="tab-content" id="goldenCircleContent">
           <div class="tab-pane fade show active" id="oque" role="tabpanel" aria-labelledby="oque-tab">
-            <p>O quê Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor lorem ipsum dolor.</p>
-            <p>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Nossas especialidades consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <?php
+              if( have_rows('golden_circle') ):
+                while( have_rows('golden_circle') ) : the_row();
+                  the_sub_field('o_que');
+                endwhile;
+              endif;
+            ?>
           </div>
           <div class="tab-pane fade" id="como" role="tabpanel" aria-labelledby="como-tab">
-            <p>Como Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor lorem ipsum dolor.</p>
-            <p>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Nossas especialidades consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <?php
+              if( have_rows('golden_circle') ):
+                while( have_rows('golden_circle') ) : the_row();
+                  the_sub_field('como');
+                endwhile;
+              endif;
+            ?>
           </div>
           <div class="tab-pane fade" id="porque" role="tabpanel" aria-labelledby="porque-tab">
-            <p>Por quê Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor lorem ipsum dolor.</p>
-            <p>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Nossas especialidades consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <?php
+              if( have_rows('golden_circle') ):
+                while( have_rows('golden_circle') ) : the_row();
+                  the_sub_field('por_que');
+                endwhile;
+              endif;
+            ?>
           </div>
         </div>
       </div>
